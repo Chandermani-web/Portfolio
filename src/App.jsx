@@ -6,6 +6,7 @@ import About from "./pages/About.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import FullScreenNav from "./Components/Navbar/FullScreenNav.jsx";
 import Skills from "./pages/Skills.jsx";
+import Contact from "./pages/Contact.jsx";
 const App = () => {
 
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/projects" element={<Project />} />
           <Route path="/about" element={<About />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
     </div>

@@ -96,7 +96,7 @@ const About = () => {
         <div className="section1 relative z-10">
           <div
             ref={imageDivRef}
-            className="hidden md:block h-[40vw] md:h-[28vw] w-[50vw] md:w-[22vw] rounded-3xl md:rounded-4xl absolute top-[60vh] md:top-85 left-[8vw] md:left-[20vw] bg-red-500 overflow-hidden border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/30"
+            className="hidden md:block h-[40vw] md:h-[25vw] w-[50vw] md:w-[20vw] rounded-3xl md:rounded-4xl absolute top-[60vh] md:top-85 left-[8vw] md:left-[20vw] bg-red-500 overflow-hidden border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/30"
           >
             <img
               src={images[0]}
@@ -148,9 +148,10 @@ const About = () => {
             What I Bring to the Table
           </h2>
 
-          <div className="flex flex-col gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[minmax(0,_1fr)]">
             {[
               {
+                index: 1,
                 icon: "ri-code-s-slash-line",
                 title: "Clean Code",
                 description:
@@ -162,6 +163,7 @@ const About = () => {
                 color: "from-cyan-500 to-blue-500",
               },
               {
+                index: 2,
                 icon: "ri-flashlight-line",
                 title: "Performance",
                 description:
@@ -173,6 +175,7 @@ const About = () => {
                 color: "from-violet-500 to-purple-500",
               },
               {
+                index: 3,
                 icon: "ri-stack-line",
                 title: "Full-Stack Development",
                 description:
@@ -184,6 +187,7 @@ const About = () => {
                 color: "from-green-400 to-emerald-500",
               },
               {
+                index: 4,
                 icon: "ri-heart-line",
                 title: "Passion & Creativity",
                 description:
@@ -195,6 +199,7 @@ const About = () => {
                 color: "from-pink-500 to-rose-500",
               },
               {
+                index: 5,
                 icon: "ri-team-line",
                 title: "Collaboration",
                 description:
@@ -206,6 +211,7 @@ const About = () => {
                 color: "from-indigo-500 to-sky-500",
               },
               {
+                index: 6,
                 icon: "ri-lightbulb-line",
                 title: "Problem Solving",
                 description:
@@ -217,6 +223,7 @@ const About = () => {
                 color: "from-yellow-400 to-orange-500",
               },
               {
+                index: 7,
                 icon: "ri-brush-line",
                 title: "UI/UX Focus",
                 description:
@@ -228,6 +235,7 @@ const About = () => {
                 color: "from-teal-400 to-cyan-500",
               },
               {
+                index: 8,
                 icon: "ri-communication-line",
                 title: "Communication",
                 description:
@@ -239,6 +247,7 @@ const About = () => {
                 color: "from-purple-400 to-fuchsia-500",
               },
               {
+                index: 9,
                 icon: "ri-refresh-line",
                 title: "Adaptability",
                 description:
@@ -249,14 +258,41 @@ const About = () => {
                   "../../public/Nav-Images/photo-1498050108023-c5249f4df085.avif",
                 color: "from-red-400 to-orange-500",
               },
-            ].map((item, index) => (
+            ].map((item) => {
+              const spanClasses =
+            item.index === 1
+              ? "lg:col-span-2 lg:py-10"
+              : item.index === 2
+              ? "lg:row-span-2 lg:py-40"
+              : item.index === 6
+              ? "lg:col-span-2 lg:py-10"
+              : "";
+              return (
               <div
-                key={index}
-                className="feature-card group relative"
-                style={{ boxShadow: "0 4px 20px rgba(0,255,255,0.1)" }}
+                key={item.index}
+                className={`feature-card group relative flex flex-col justify-between gap-3 ${spanClasses} border-2 border-white/40 rounded-2xl`}
+                style={{ boxShadow: "0 4px 20px rgba(0,255,255,0.2)" }}
               >
                 {/* Main Card */}
-                <div className="flex flex-col sm:flex-row lg:grid lg:grid-cols-3 items-center overflow-hidden rounded-2xl px-4 sm:px-6 py-4 border border-cyan-500/20 backdrop-blur-sm bg-gray-900/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:bg-gray-800/40">
+                <div>
+                  {/* Image */}
+                  <div className="flex justify-center mb-4">
+                    <div className="w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20vw] aspect-video bg-gradient-to-r from-cyan-900 to-blue-900 flex items-center justify-center overflow-hidden rounded-xl">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <p className="text-gray-400 text-xs sm:text-sm md:text-base px-2 sm:px-4">
+                    {item.longDescription}
+                  </p>
+                </div>
+
+                <div
+                  className={`flex flex-col items-center overflow-hidden px-4 sm:px-6 py-4  backdrop-blur-sm bg-gray-900/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:bg-gray-800/40`}
+                >
                   <div
                     className={`text-3xl sm:text-4xl flex gap-3 justify-center items-center bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
                   >
@@ -270,9 +306,9 @@ const About = () => {
                   </p>
                 </div>
 
+
                 {/* Hover Overlay */}
-                <div className="absolute inset-2 sm:inset-6 md:inset-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:z-10 transition-all duration-500 ease-in-out flex flex-col items-center justify-center rounded-2xl p-3 sm:p-4 text-center bg-gradient-to-r from-gray-900 to-blue-900 max-w-[90vw] sm:max-w-[70vw] md:max-w-[50vw] lg:max-w-[30vw] mx-auto">
-                  {/* Image */}
+                {/* <div className="absolute inset-2 sm:inset-6 md:inset-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:z-10 transition-all duration-500 ease-in-out flex flex-col items-center justify-center rounded-2xl p-3 sm:p-4 text-center bg-gradient-to-r from-gray-900 to-blue-900 max-w-[90vw] sm:max-w-[70vw] md:max-w-[50vw] lg:max-w-[30vw] mx-auto">
                   <div className="flex justify-center mb-4">
                     <div className="w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20vw] aspect-video bg-gradient-to-r from-cyan-900 to-blue-900 flex items-center justify-center overflow-hidden rounded-xl">
                       <img
@@ -283,16 +319,15 @@ const About = () => {
                     </div>
                   </div>
 
-                  {/* Title + Long Description */}
                   <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-red-500 mb-2">
                     {item.title}
                   </h3>
                   <p className="text-gray-400 text-xs sm:text-sm md:text-base px-2 sm:px-4">
                     {item.longDescription}
                   </p>
-                </div>
+                </div> */}
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </div>

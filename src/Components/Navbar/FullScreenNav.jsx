@@ -70,7 +70,7 @@ const FullScreenNav = () => {
       id="fullscreennav"
       className="hidden h-screen w-full absolute overflow-x-hidden bg-gray-950 text-white z-50"
     >
-      <div className="h-screen w-full fixed">
+      <div className="h-screen w-screen fixed">
         <div className="stairing h-full w-full flex">
           <div className="h-full w-1/5 bg-red-900"></div>
           <div className="h-full w-1/5 bg-red-900"></div>

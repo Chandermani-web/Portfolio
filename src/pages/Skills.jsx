@@ -108,7 +108,7 @@ const Skills = () => {
   return (
     <section id="skills" className="min-h-screen py-16 sm:py-24 relative overflow-hidden bg-black">
       {/* Background grid */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none hidden sm:block">
+      <div className="absolute inset-0 opacity-50 pointer-events-none hidden sm:block">
         <div className="grid grid-cols-12 gap-4 h-full">
           {Array.from({ length: 144 }).map((_, i) => (
             <div key={i} className="border border-white/30 h-10"></div>
