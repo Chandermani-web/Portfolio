@@ -7,7 +7,7 @@ const Projects = () => {
   const projects = [
     {
       image1:
-        "https://k72.ca/uploads/caseStudies/PJC/Thumbnails/PJC_SiteK72_Thumbnail_1280x960-1280x960.jpg",
+        "../../public/Project-images/pexels-pixabay-41949.jpg",
       title1: "Lingolive",
       paragraph1:
         "Lingolive is an innovative chat platform that allows users to communicate seamlessly by hearing the other person’s voice in their own local language, breaking down language barriers in real-time.",

@@ -9,7 +9,7 @@ const ProjectCard = (props) => {
           <h2 className="uppercase text-2xl sm:text-4xl lg:text-6xl font-[font1] border-2 sm:border-4 pt-2 sm:pt-4 px-4 sm:px-8 text-white border-white rounded-full">
             {props.title1}
           </h2>
-          <p className="uppercase text-xl sm:text-xl text-black/80 bg-white/50 lg:text-2xl font-[font1] border-1 sm:border-4 pt-2 sm:pt-4 px-4 sm:px-8 border-black/80 lg:rounded-full">
+          <p className="uppercase text-xl sm:text-xl text-black/80 bg-white/50 lg:text-2xl font-[font1] border-1 sm:border-4 pt-2 sm:pt-4 px-4 sm:px-8 border-black/80 lg:rounded-full hidden sm:block">
             {props.paragraph1}
           </p>
         </div>
@@ -21,7 +21,7 @@ const ProjectCard = (props) => {
           <h2 className="uppercase text-2xl sm:text-4xl lg:text-6xl font-[font1] border-2 sm:border-4 pt-2 sm:pt-4 px-4 sm:px-8 text-white border-white rounded-full">
             {props.title2}
           </h2>
-          <p className="uppercase text-xl sm:text-xl text-black/80 bg-white/50 lg:text-2xl font-[font1] border-1 sm:border-4 pt-2 sm:pt-4 px-4 sm:px-8 border-black/80 lg:rounded-full">
+          <p className="uppercase text-xl sm:text-xl text-black/80 bg-white/50 lg:text-2xl font-[font1] border-1 sm:border-4 pt-2 sm:pt-4 px-4 sm:px-8 border-black/80 lg:rounded-full hidden sm:block">
             {props.paragraph2}
           </p>
         </div>

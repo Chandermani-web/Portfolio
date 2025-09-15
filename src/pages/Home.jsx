@@ -8,12 +8,8 @@ const Home = () => {
     <div className="h-screen w-screen relative text-gray-100 bg-black">
       {/* Video or Image in background */}
       <div className="fixed top-0 h-full w-full">
-        {/* <Video /> */}
-        <img
-          src="../../public/Nav-Images/image (2).png"
-          alt=""
-          className="w-full h-full object-cover"
-        />
+        <Video />
+        <img src="../../public/Nav-Images/image (2).png" alt="" className="w-full h-full object-cover" />
       </div>
 
       {/* Animation particales */}
@@ -35,7 +31,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* Text on top */}
+      {/* Text */}
       <div className="relative h-full flex flex-col justify-between">
         <HomeHeroText />
         <HomeBottomText />
