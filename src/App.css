@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+/* Add this to your global CSS/tailwind config */
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-accent: #FEFAC2; /* Keep your existing accent */
+  --border-color: #2a2a2a;
+  --accent-blue: #3b82f6; /* For buttons and highlights */
+}
+
+body {
+    /* background-color: #181818; */
+    /* color: #FFFFFF; */
+    font-family: 'Times New Roman', Times, serif;
+    overflow-x: hidden;
+}
+
