@@ -16,8 +16,6 @@ COPY . .
 # Build your React app
 RUN npm run build
 
-
-
 # ---------- 2. Production Stage ----------
 FROM nginx:alpine
 
