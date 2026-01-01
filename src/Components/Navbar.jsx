@@ -47,7 +47,7 @@ const Navbar = () => {
           <a href="https://github.com/Chandermani-web" target="_blank" rel="noopener noreferrer">
             <GithubIcon className="border-2 h-8 w-8 p-1.5 rounded-full hover:bg-white hover:text-black transition duration-300" />
           </a>
-          <a href="www.linkedin.com/in/chandermani-mishra-a25473304" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/chandermani-mishra-a25473304" target="_blank" rel="noopener noreferrer">
             <Linkedin className="border-2 h-8 w-8 p-1.5 rounded-full hover:bg-white hover:text-blue-800 transition duration-300" />
           </a>
         </div>
