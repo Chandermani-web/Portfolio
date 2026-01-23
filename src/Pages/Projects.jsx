@@ -8,13 +8,15 @@ const Projects = () => {
     {
       image1:
         "/Project-images/pexels-pixabay-41949.jpg",
-      title1: "Lingolive",
+      title1: "Lingolive- A Real-time Communication Platform",
       paragraph1:
         "Lingolive is an innovative chat platform that allows users to communicate seamlessly by hearing the other person’s voice in their own local language, breaking down language barriers in real-time.",
-      image2: "/Project-images/pexels-alesiakozik-6772076.jpg",
-      title2: "WealthWisdom",
+      tech1: ["Reactjs", "TailwindCSS", "ContextAPI","Nodejs","Expressjs","MongoDB","Cloudinary","Socket.io","Socket.io-client","Python","Whisper"],
+      image2: "/Project-images/pexels-canvastudio-3194519.jpg",
+      title2: "AI-AUTOMATION FOR UGC-AICTE",
       paragraph2:
-        "WealthWisdom is a comprehensive financial platform designed for smart saving, investment tracking, and monitoring crypto and stock markets with real-time insights.",
+        "CECP is a user-friendly e-commerce platform that connects customers with products effortlessly, offering a smooth and engaging shopping experience.",
+      tech2: ["Reactjs", "TailwindCSS","Nodejs","Expressjs","MongoDB","Cloudinary","Socket.io","Socket.io-client","ContextAPI", "Whisper", "Chartjs","YOLO","Python"],
     },
     {
       image1:
@@ -22,21 +24,24 @@ const Projects = () => {
       title1: "C72",
       paragraph1:
         "C72 is a modern healthcare management platform that streamlines hospital operations and enhances patient care through digital solutions.",
-      image2: "/Project-images/pexels-olly-3756345.jpg",
-      title2: "CECP",
+      tech1: ["Reactjs", "TailwindCSS", "Chartjs", "Redux", "Firebase"],
+      
+      image2: "/Project-images/pexels-alesiakozik-6772076.jpg",
+      title2: "WealthWisdom",
       paragraph2:
-        "CECP is a user-friendly e-commerce platform that connects customers with products effortlessly, offering a smooth and engaging shopping experience.",
+        "WealthWisdom is a comprehensive financial platform designed for smart saving, investment tracking, and monitoring crypto and stock markets with real-time insights.",
+      tech2: ["Reactjs","CSS","Firebase","Google-api"]
     },
-    {
-      image1: "/Project-images/pexels-canvastudio-3194519.jpg",
-      title1: "LAMAJEURE",
-      paragraph1:
-        "LAMAJEURE is a freelancing platform that empowers professionals to showcase their skills, connect with clients, and collaborate on projects globally.",
-      image2: "/Project-images/pexels-donaldtong94-66134.jpg",
-      title2: "SHELTON",
-      paragraph2:
-        "SHELTON is an entertainment platform that provides users with a rich movie-watching experience, featuring a wide variety of films across genres.",
-    },
+    // {
+    //   image1: "/Project-images/pexels-canvastudio-3194519.jpg",
+    //   title1: "LAMAJEURE",
+    //   paragraph1:
+    //     "LAMAJEURE is a freelancing platform that empowers professionals to showcase their skills, connect with clients, and collaborate on projects globally.",
+    //   image2: "/Project-images/pexels-donaldtong94-66134.jpg",
+    //   title2: "SHELTON",
+    //   paragraph2:
+    //     "SHELTON is an entertainment platform that provides users with a rich movie-watching experience, featuring a wide variety of films across genres.",
+    // },
   ];
 
   gsap.registerPlugin(ScrollTrigger);
@@ -48,7 +53,7 @@ const Projects = () => {
       scrollTrigger: {
         trigger: ".lol",
         start: "top 95%",
-        end: "top -150%",
+        end: "top -90%",
         scrub: true,
       },
     });
@@ -77,6 +82,8 @@ const Projects = () => {
               title2={elem.title2}
               paragraph1={elem.paragraph1}
               paragraph2={elem.paragraph2}
+              tech1={elem.tech1}
+              tech2={elem.tech2}
             />
           </div>
         ))}

@@ -83,7 +83,7 @@ const Home = () => {
             <div className='md:absolute right-30 bottom-35 hero-contact-btn'>
                 <div className='mt-10 relative ml-7'>
                     <div className='h-25 w-25 border-2 border-[#FEFAC2] rounded-full absolute -left-7 -top-6 -z-10'></div>
-                    <a href='#contact' className='flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] rounded-full hover:bg-blue-700 transition duration-300'>
+                    <a href='#contact' className='flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] rounded-full text-[#FEFAC2] hover:bg-blue-700 transition duration-300'>
                         Contact Me <ArrowRight size={20} />
                     </a>
                 </div>
