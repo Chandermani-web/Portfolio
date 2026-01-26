@@ -1,28 +1,28 @@
 import React from 'react';
 
 const ProjectCard = (props) => {
-  const openLink = (url) => {
-    window.open(url, "_blank"); // opens in new tab
-  };
+  // const openLink = (url) => {
+  //   window.open(url, "_blank"); // opens in new tab
+  // };
 
   return (
     <>
       {/* Card 1 */}
       <div
-        className="w-full lg:w-1/2 group transition-all relative rounded-none hover:rounded-[70px] overflow-hidden h-full"
-        onClick={() => openLink("https://lingolive.onrender.com")}
+        className={`w-full lg:w-1/2 group transition-all relative rounded-none hover:rounded-[70px] overflow-hidden h-full ${ !props.link1 && "cursor-not-allowed" }`}
+        //  onClick={props.link1 ? () => openLink(props.link1) : undefined}
       >
         <img className="h-full w-full object-cover" src={props.image1} alt="" />
         <div className="opacity-100 lg:opacity-0 transition-opacity group-hover:opacity-100 absolute top-0 flex flex-col gap-5 items-center justify-center left-0 h-full w-full bg-black/30 lg:bg-black/15 text-center">
           
           <div className="flex-1 flex justify-center items-center gap-4">
-            <a href={props.demoLink1} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
+            <a href={props.link1} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
               <i className="ri-eye-line text-xl text-white text-2xl"></i>
               <span className="text-xl text-white text-2xl">Live Demo</span>
             </a>
-            <a href={props.codeLink1} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
+            <a href={props.github1} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
               <i className="ri-github-line text-xl text-white text-2xl"></i>
-              <span className="text-xl text-white text-2xl">Live Demo</span>
+              <span className="text-xl text-white text-2xl">GitHub</span>
             </a>
           </div>
           
@@ -46,20 +46,20 @@ const ProjectCard = (props) => {
 
       {/* Card 2 */}
       <div
-        className="w-full lg:w-1/2 group transition-all relative rounded-none hover:rounded-[70px] overflow-hidden h-full"
-        onClick={() => openLink("https://lingolive.onrender.com")}
+        className={`w-full lg:w-1/2 group transition-all relative rounded-none hover:rounded-[70px] overflow-hidden h-full ${ !props.link2 && "cursor-not-allowed" }`}
+        //  onClick={props.link2 ? () => openLink(props.link2) : undefined}
       >
         <img className="h-full w-full object-cover" src={props.image2} alt="" />
         <div className="opacity-100 lg:opacity-0 transition-opacity group-hover:opacity-100 absolute top-0 flex flex-col gap-5 items-center justify-center left-0 h-full w-full bg-black/30 lg:bg-black/15">
           
           <div className="flex-1 flex justify-center items-center gap-4">
-            <a href={props.demoLink1} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
+            <a href={props.link2} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
               <i className="ri-eye-line text-xl text-white text-2xl"></i>
               <span className="text-xl text-white text-2xl">Live Demo</span>
             </a>
-            <a href={props.codeLink1} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
+            <a href={props.github2} className="text-white bg-black/40 p-4 flex flex-col items-center self-center hover:-translate-y-1.5 transition-all duration-300 rounded-2xl" target="_blank" rel="noopener noreferrer">
               <i className="ri-github-line text-xl text-white text-2xl"></i>
-              <span className="text-xl text-white text-2xl">Live Demo</span>
+              <span className="text-xl text-white text-2xl">GitHub</span>
             </a>
           </div>
 
