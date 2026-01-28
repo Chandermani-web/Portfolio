@@ -11,9 +11,9 @@ const Skills = () => {
       skills: [
         { name: "JavaScript (ES6+)", percentage: 93, level: "Expert" },
         { name: "C++", percentage: 88, level: "Advanced" },
-        { name: "Rust", percentage: 85, level: "Advanced" },
+        // { name: "Rust", percentage: 85, level: "Advanced" },
         { name: "Java", percentage: 54, level: "Intermediate" },
-        { name: "Solidity", percentage: 82, level: "Advanced" }
+        // { name: "Solidity", percentage: 82, level: "Advanced" }
       ]
     },
     {
@@ -24,7 +24,8 @@ const Skills = () => {
         { name: "React.js", percentage: 91, level: "Expert" },
         { name: "Node.js", percentage: 89, level: "Expert" },
         { name: "Express.js", percentage: 87, level: "Advanced" },
-        { name: "Next.js", percentage: 86, level: "Advanced" }
+        { name: "Next.js", percentage: 86, level: "Advanced" },
+        { name: "Django", percentage: 80, level: "Intermediate" }
       ]
     },
     {
@@ -34,22 +35,23 @@ const Skills = () => {
       skills: [
         { name: "MongoDB", percentage: 90, level: "Expert" },
         { name: "Firebase", percentage: 85, level: "Advanced" },
-        { name: "MySQL", percentage: 84, level: "Advanced" }
+        { name: "MySQL", percentage: 84, level: "Advanced" },
+        { name: "PostgreSQL", percentage: 80, level: "Intermediate" }
       ]
     },
-    {
-      icon: <Link className="w-6 h-6" />,
-      title: "Blockchain & Web3",
-      color: "from-orange-500 to-red-500",
-      skills: [
-        { name: "Smart Contract Deployment", percentage: 85, level: "Advanced" },
-        { name: "Web3.js / Ethers.js", percentage: 84, level: "Advanced" },
-        { name: "Ethereum Network", percentage: 83, level: "Advanced" },
-        { name: "DApps Development", percentage: 83, level: "Advanced" },
-        { name: "Solidity", percentage: 82, level: "Advanced" },
-        { name: "IPFS", percentage: 81, level: "Intermediate" }
-      ]
-    },
+    // {
+    //   icon: <Link className="w-6 h-6" />,
+    //   title: "Blockchain & Web3",
+    //   color: "from-orange-500 to-red-500",
+    //   skills: [
+    //     { name: "Smart Contract Deployment", percentage: 85, level: "Advanced" },
+    //     { name: "Web3.js / Ethers.js", percentage: 84, level: "Advanced" },
+    //     { name: "Ethereum Network", percentage: 83, level: "Advanced" },
+    //     { name: "DApps Development", percentage: 83, level: "Advanced" },
+    //     { name: "Solidity", percentage: 82, level: "Advanced" },
+    //     { name: "IPFS", percentage: 81, level: "Intermediate" }
+    //   ]
+    // },
     {
       icon: <Cloud className="w-6 h-6" />,
       title: "DevOps & Cloud",
@@ -59,7 +61,7 @@ const Skills = () => {
         { name: "Docker", percentage: 86, level: "Advanced" },
         { name: "CI/CD Basics", percentage: 84, level: "Advanced" },
         { name: "Kubernetes", percentage: 82, level: "Advanced" },
-        { name: "Jenkins", percentage: 48, level: "Intermediate" }
+        // { name: "Jenkins", percentage: 48, level: "Intermediate" }
       ]
     },
     {
