@@ -7,7 +7,7 @@ const Projects = () => {
   const projects = [
     {
       image1: "/Project-images/pexels-pixabay-41949.jpg",
-      title1: "Lingolive- A Real-time Communication Platform",
+      title1: "Lingolive",
       paragraph1:
         "Lingolive is an innovative chat platform that allows users to communicate seamlessly by hearing the other person’s voice in their own local language, breaking down language barriers in real-time.",
       tech1: [
