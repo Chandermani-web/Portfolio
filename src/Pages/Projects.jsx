@@ -99,7 +99,7 @@ const Projects = () => {
       {/* Heading */}
       <div className="pt-10">
         <h2 className="font-[font2] text-4xl sm:text-6xl lg:text-[9.5vw] uppercase bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent z-50">
-          Projects <sup className="text-green-400">6</sup>
+          Projects <sup className="text-green-400">4</sup>
         </h2>
       </div>
 
