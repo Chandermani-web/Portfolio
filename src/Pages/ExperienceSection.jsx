@@ -25,7 +25,7 @@ const ExperienceSection = () => {
   const experiences = [
     {
       type: "Hackathon",
-      title: "Smart India Hackathon 2023",
+      title: "Smart India Hackathon 2025",
       organization: "AICTE, Government of India",
       location: "National",
       date: "9 - 10 December 2025",
@@ -36,7 +36,7 @@ const ExperienceSection = () => {
         "Supported 2,000+ institutions",
         "Processed 50,000+ documents in 6 months",
       ],
-      skills: ["Backend Architecture", "GPT-4 Integration", "React", "Node.js", "MongoDB"],
+      skills: ["Backend Architecture", "GPT-4 Integration", "React", "TailwindCSS", "Node.js", "MongoDB"],
     },
     {
       type: "Project",
@@ -47,11 +47,11 @@ const ExperienceSection = () => {
       achievement: "✨ Production Systems",
       description: "Built and shipped 4+ full-stack applications from concept to production, handling architecture, backend, frontend, and deployment.",
       impact: [
-        "Real-time systems supporting 1000+ concurrent users",
+        "Real-time systems supporting 20+ concurrent users",
         "Scalable APIs processing millions of requests/month",
-        "Open-source contributions with 500+ GitHub stars",
+        "Open-source contributions with 50+ GitHub stars",
       ],
-      skills: ["Next.js", "Node.js", "PostgreSQL", "MongoDB", "WebSockets"],
+      skills: ["Next.js", "React.js", "Node.js", "PostgreSQL", "MongoDB", "MySQL", "WebSockets"],
     },
     {
       type: "Hackathon",
