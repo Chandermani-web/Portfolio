@@ -1,228 +1,237 @@
-import React, { useEffect } from 'react'
-import 'remixicon/fonts/remixicon.css';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+// File: src/components/Feature.jsx (or Pages/Feature.jsx)
+import React from "react";
+import { 
+  Cpu, 
+  Server, 
+  Zap, 
+  Database, 
+  Cloud, 
+  GitBranch,
+  Code2,
+  Network,
+  Sparkles,
+  ArrowRight,
+  Target,
+  Layers,
+  Rocket
+} from "lucide-react";
 
 const Feature = () => {
-  useEffect(()=>{
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".feature-card-section",
-        start: "top 70%",
-        end: "top 50%",
-        scrub: true,
-      }
-    })
-    tl.fromTo(".feature-card-section h2",
-      {y: 50, opacity: 0},
-      {y: 0, opacity: 1, duration: 1, ease: "power2.out"}
-    );
-    tl.fromTo(".feature-paragraph",
-      {y: 50, opacity: 0},
-      {y: 0, opacity: 1, duration: 1, ease: "power2.out"},
-    );
-    tl.fromTo(".feature-card",
-      {scale: 0, opacity: 0},
-      {scale: 1, opacity: 1, duration:  1, ease: "power2.out", stagger: 0.2, scrollTrigger: {
-        trigger: ".feature-card-section",
-        start: "top 18%",
-        end: "top 10%",
-        scrub: true,
-      }},
-    );
-  },[])
+  const engineeringAreas = [
+    {
+      icon: Cpu,
+      title: "System Architecture",
+      description: "Scalable & maintainable system design",
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/10"
+    },
+    {
+      icon: Layers,
+      title: "Microservices Design",
+      description: "Distributed systems & service orchestration",
+      color: "text-purple-400",
+      bgColor: "bg-purple-500/10"
+    },
+    {
+      icon: Zap,
+      title: "Real-Time Applications",
+      description: "WebSocket, SSE & live data streaming",
+      color: "text-cyan-400",
+      bgColor: "bg-cyan-500/10"
+    },
+    {
+      icon: Server,
+      title: "API Design & REST",
+      description: "Clean, documented & versioned APIs",
+      color: "text-emerald-400",
+      bgColor: "bg-emerald-500/10"
+    },
+    {
+      icon: Database,
+      title: "Database Optimization",
+      description: "Query performance & data modeling",
+      color: "text-amber-400",
+      bgColor: "bg-amber-500/10"
+    },
+    {
+      icon: Cloud,
+      title: "DevOps & Deployment",
+      description: "CI/CD, containerization & cloud infrastructure",
+      color: "text-indigo-400",
+      bgColor: "bg-indigo-500/10"
+    },
+    {
+      icon: Rocket,
+      title: "Generative AI Integration",
+      description: "LLMs, AI workflows & intelligent automation",
+      color: "text-pink-400",
+      bgColor: "bg-pink-500/10"
+    },
+    {
+      icon: Network,
+      title: "Performance Tuning",
+      description: "Optimization & high-load systems",
+      color: "text-red-400",
+      bgColor: "bg-red-500/10"
+    },
+    {
+      icon: Code2,
+      title: "Code Quality",
+      description: "Clean code, testing & best practices",
+      color: "text-green-400",
+      bgColor: "bg-green-500/10"
+    },
+    {
+      icon: GitBranch,
+      title: "Version Control",
+      description: "Git workflows & collaboration",
+      color: "text-orange-400",
+      bgColor: "bg-orange-500/10"
+    },
+    {
+      icon: Target,
+      title: "Problem Solving",
+      description: "Analytical thinking & solution design",
+      color: "text-violet-400",
+      bgColor: "bg-violet-500/10"
+    },
+    {
+      icon: Sparkles,
+      title: "Innovation",
+      description: "Emerging tech & future-proof solutions",
+      color: "text-yellow-400",
+      bgColor: "bg-yellow-500/10"
+    }
+  ];
 
   return (
-    <div id='features'>
-      <div
-        className="relative py-10 px-4 md:px-10 bg-[#0a0a0a] min-h-0 feature-card-section"
-      >
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-5xl sm:text-5xl md:text-8xl font-bold mb-4 pb-2 text-center bg-gradient-to-br from-gray-200 via-blue-400 to-gray-300 bg-clip-text text-transparent mt-10">
-            / What I Bring to the Table /
-          </h2>
-          <p className="text-center text-lg mx-auto md:w-[65%] md:text-2xl mb-10 text-[#a0a0a0] feature-paragraph">
-            I offer a unique blend of skills and experiences that enable me to tackle complex challenges and deliver exceptional results.
+    <section id="expertise" className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-20">
+        {/* Section Header */}
+        <div className="text-center mb-12 md:mb-20">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30">
+              <Target className="w-6 h-6 text-cyan-400" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
+              Engineering Focus Areas
+            </h2>
+          </div>
+          
+          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+            Specialized expertise across modern software development domains, 
+            combining technical depth with innovative problem-solving
           </p>
+        </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[minmax(0,_1fr)] z-30">
-            {[
-              {
-                index: 1,
-                icon: "ri-code-s-slash-line",
-                title: "Clean Code",
-                description:
-                  "Writing maintainable, scalable, and reusable solutions that follow best practices.",
-                longDescription:
-                  "I focus on writing code that is easy to read, well-structured, and future-proof. Following SOLID principles, modularity, and proper documentation ensures the project can be easily maintained by any developer in the long run.",
-                image:
-                  "/Nav-Images/50ff59cc0550df5b36543807a58db98c52e01a22274a317eafbfa5266941579b-640x290.png",
-                color: "from-cyan-500 to-blue-600",
-                bgColor: "bg-gradient-to-br from-cyan-50 to-blue-100"
-              },
-              {
-                index: 2,
-                icon: "ri-flashlight-line",
-                title: "Performance",
-                description:
-                  "Crafting highly optimized, fast, and responsive applications that deliver smooth experiences.",
-                longDescription:
-                  "Performance is not just speed—it's about delivering seamless experiences. I leverage efficient algorithms, lazy loading, caching strategies, and optimized database queries to ensure applications run smoothly even under heavy loads.",
-                image:
-                  "/Nav-Images/photo-1460925895917-afdab827c52f.avif",
-                color: "from-violet-600 to-purple-600",
-                bgColor: "bg-gradient-to-br from-violet-50 to-purple-100"
-              },
-              {
-                index: 3,
-                icon: "ri-stack-line",
-                title: "Full-Stack Development",
-                description:
-                  "Building complete solutions from database to frontend with seamless integration.",
-                longDescription:
-                  "From designing RESTful APIs and managing databases to building intuitive UIs, I bring a strong full-stack perspective. This ensures smooth communication between frontend and backend, reducing bottlenecks and enhancing scalability.",
-                image:
-                  "/Nav-Images/photo-1531403009284-440f080d1e12.avif",
-                color: "from-emerald-500 to-green-600",
-                bgColor: "bg-gradient-to-br from-emerald-50 to-green-100"
-              },
-              {
-                index: 4,
-                icon: "ri-heart-line",
-                title: "Passion & Creativity",
-                description:
-                  "Driven by a genuine love for creating meaningful, user-friendly digital experiences.",
-                longDescription:
-                  "I see coding as a form of creativity—just like art. My passion for building drives me to explore new technologies, push design boundaries, and deliver experiences that truly stand out and delight users.",
-                image:
-                  "/Nav-Images/photo-1515879218367-8466d910aaa4.avif",
-                color: "from-rose-500 to-pink-600",
-                bgColor: "bg-gradient-to-br from-rose-50 to-pink-100"
-              },
-              {
-                index: 5,
-                icon: "ri-team-line",
-                title: "Collaboration",
-                description:
-                  "Thrives in teamwork, contributing ideas, sharing knowledge, and learning from others.",
-                longDescription:
-                  "Great products are built by great teams. I excel in pair programming, code reviews, and brainstorming sessions, ensuring that collaboration leads to innovation and collective growth.",
-                image:
-                  "/Nav-Images/photo-1542831371-29b0f74f9713.avif",
-                color: "from-indigo-500 to-blue-600",
-                bgColor: "bg-gradient-to-br from-indigo-50 to-blue-100"
-              },
-              {
-                index: 6,
-                icon: "ri-lightbulb-line",
-                title: "Problem Solving",
-                description:
-                  "Strong analytical mindset to tackle challenges and deliver innovative solutions.",
-                longDescription:
-                  "I approach challenges with curiosity and persistence. By breaking problems into smaller parts and analyzing patterns, I develop innovative, practical, and scalable solutions for both technical and business needs.",
-                image:
-                  "/Nav-Images/photo-1506784983877-45594efa4cbe.avif",
-                color: "from-amber-500 to-orange-600",
-                bgColor: "bg-gradient-to-br from-amber-50 to-orange-100"
-              },
-              {
-                index: 7,
-                icon: "ri-brush-line",
-                title: "UI/UX Focus",
-                description:
-                  "Prioritizing user experience with modern, intuitive, and visually appealing designs.",
-                longDescription:
-                  "I believe technology should feel effortless. My focus on UI/UX ensures products not only look modern but also provide smooth, intuitive, and accessible interactions that users love.",
-                image:
-                  "/Nav-Images/photo-1545235617-9465d2a55698.avif",
-                color: "from-teal-500 to-cyan-600",
-                bgColor: "bg-gradient-to-br from-teal-50 to-cyan-100"
-              },
-              {
-                index: 8,
-                icon: "ri-speak-ai-fill",
-                title: "Communication",
-                description:
-                  "Clear and effective communicator, ensuring smooth collaboration with teams and clients.",
-                longDescription:
-                  "Good communication reduces misunderstandings and speeds up development. I prioritize transparency, timely updates, and active listening to ensure everyone is aligned with the vision and goals.",
-                image:
-                  "/Nav-Images/photo-1587560699334-cc4ff634909a.avif",
-                color: "from-purple-500 to-fuchsia-600",
-                bgColor: "bg-gradient-to-br from-purple-50 to-fuchsia-100"
-              },
-              {
-                index: 9,
-                icon: "ri-refresh-line",
-                title: "Adaptability",
-                description:
-                  "Quick to adapt to new technologies, frameworks, and environments with a growth mindset.",
-                longDescription:
-                  "In tech, change is constant. I stay curious and flexible, quickly learning new tools, frameworks, and methodologies. This adaptability ensures I stay ahead and can contribute in any environment.",
-                image:
-                  "/Nav-Images/photo-1498050108023-c5249f4df085.avif",
-                color: "from-orange-500 to-red-600",
-                bgColor: "bg-gradient-to-br from-orange-50 to-red-100"
-              },
-            ].map((item) => {
-              const spanClasses =
-            item.index === 1
-              ? "lg:col-span-2 lg:py-10"
-              : item.index === 2
-              ? "lg:row-span-2 lg:py-40"
-              : item.index === 6
-              ? "lg:col-span-2 lg:py-10"
-              : "";
-              return (
+        {/* Engineering Areas Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+          {engineeringAreas.map((area, index) => {
+            const Icon = area.icon;
+            
+            return (
               <div
-                key={item.index}
-                className={`feature-card group relative flex flex-col justify-between gap-3 ${spanClasses} border border-[#2a2a2a] rounded-2xl bg-[#1a1a1a] backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-[#3b82f6] transition-all duration-300`}
+                key={area.title}
+                className="group"
               >
-                {/* Main Card */}
-                <div>
-                  {/* Image */}
-                  <div className="flex justify-center mb-4">
-                    <div className="w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20vw] aspect-video bg-gradient-to-r from-white to-gray-100 flex items-center justify-center overflow-hidden rounded-xl shadow-md mt-2">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          console.warn("Feature image failed to load:", e.target.src);
-                          e.target.style.display = 'none';
-                        }}
-                      />
+                <div className={`
+                  h-full relative rounded-2xl overflow-hidden border transition-all duration-300
+                  border-gray-800 bg-gradient-to-br from-gray-900/50 to-black/50
+                  hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2
+                `}>
+                  {/* Card Content */}
+                  <div className="p-6 md:p-8">
+                    {/* Icon & Title */}
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className={`p-3 rounded-xl ${area.bgColor} border border-gray-800`}>
+                        <Icon className={`w-6 h-6 ${area.color}`} />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-white mb-1">
+                          {area.title}
+                        </h3>
+                        <div className="flex items-center gap-2">
+                          <div className="h-px w-6 bg-gradient-to-r from-blue-500/50 to-transparent"></div>
+                          <span className="text-sm text-gray-400">EXPERTISE</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-[#a0a0a0] text-xs sm:text-sm md:text-base px-2 sm:px-4">
-                    {item.longDescription}
-                  </p>
-                </div>
 
-                <div
-                  className="flex flex-col items-center overflow-hidden px-4 sm:px-6 py-4 bg-[#111111] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 rounded-2xl mx-2 my-2 border border-[#2a2a2a]"
-                >
-                  <div
-                    className={`text-3xl sm:text-4xl flex gap-3 justify-center items-center bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
-                  >
-                    <i className={item.icon}></i>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2 text-cente">
-                      {item.title}
-                    </h3>
+                    {/* Description */}
+                    <p className="text-gray-300 text-sm md:text-base mb-6">
+                      {area.description}
+                    </p>
+
+                    {/* Progress Indicator */}
+                    <div className="mt-6 pt-6 border-t border-gray-800">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs text-gray-400">PROFICIENCY</span>
+                        <span className={`text-xs font-semibold ${area.color}`}>
+                          {index < 6 ? "EXPERT" : "ADVANCED"}
+                        </span>
+                      </div>
+                      <div className="h-1.5 w-full bg-gray-800 rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full rounded-full transition-all duration-500 ease-out ${
+                            index < 6 
+                              ? "bg-gradient-to-r from-blue-500 to-cyan-500" 
+                              : "bg-gradient-to-r from-purple-500 to-pink-500"
+                          }`}
+                          style={{ 
+                            width: index < 6 ? "95%" : "85%"
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    {/* Hover Indicator */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
                   </div>
-                  <p className="text-[#a0a0a0] text-sm sm:text-base text-center sm:text-left">
-                    {item.description}
-                  </p>
                 </div>
               </div>
-            )})}
+            );
+          })}
+        </div>
+
+        {/* CTA Section */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-2xl bg-gradient-to-r from-gray-900 to-black border border-gray-800 max-w-4xl mx-auto">
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Ready to Build Together?
+              </h3>
+              <p className="text-gray-400">
+                Let's leverage these engineering capabilities for your next project
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="#contact"
+                className="group flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg font-semibold text-white transition-all duration-300"
+              >
+                <span>Discuss a Project</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a 
+                href="#projects"
+                className="group flex items-center justify-center gap-2 px-8 py-3 bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded-lg font-semibold text-white transition-all duration-300"
+              >
+                <span>View Case Studies</span>
+                <div className="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform"></div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default Feature
+export default Feature;

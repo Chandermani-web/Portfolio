@@ -13,7 +13,7 @@ const Skills = () => {
         { name: "C++", percentage: 88, level: "Advanced" },
         // { name: "Rust", percentage: 85, level: "Advanced" },
         { name: "Java", percentage: 54, level: "Intermediate" },
-        // { name: "Solidity", percentage: 82, level: "Advanced" }
+        { name: "Python", percentage: 70, level: "Intermediate" }
       ]
     },
     {
@@ -186,7 +186,7 @@ const Skills = () => {
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
             <span className="text-gray-300">
               <span className="text-cyan-400 font-semibold">Full-Stack Mastery</span> • 
-              <span className="text-purple-400 font-semibold"> Blockchain Integration</span> • 
+              {/* <span className="text-purple-400 font-semibold"> Blockchain Integration</span> •  */}
               <span className="text-emerald-400 font-semibold"> DevOps Ready</span>
             </span>
           </div>

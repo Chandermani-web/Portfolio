@@ -38,7 +38,7 @@ const Navbar = () => {
         <ul className="hidden md:flex space-x-8 text-lg font-sans">
           <li><a href="#about" className="hover:text-[#FEFAC2] transition">About</a></li>
           <li><a href="#skills" className="hover:text-[#FEFAC2] transition">Skills</a></li>
-          <li><a href="#projects" className="hover:text-[#FEFAC2] transition">Projects</a></li>
+          <li><a href="#project" className="hover:text-[#FEFAC2] transition">Projects</a></li>
           <li><a href="#contact" className="hover:text-[#FEFAC2] transition">Contact</a></li>
         </ul>
 

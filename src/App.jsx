@@ -7,6 +7,7 @@ import Feature from "./Pages/Feature";
 import Skills from "./Pages/Skills";
 import Projects from "./Pages/Projects";
 import Contact from "./Pages/Contact";
+import ExperienceSection from "./Pages/ExperienceSection";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Feature />
       <Skills />
       <Projects />
+      <ExperienceSection />
       <Contact />
     </div>
   );
