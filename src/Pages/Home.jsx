@@ -45,12 +45,12 @@ const Home = () => {
     <div className='relative px-6 py-16 lg:px-8 bg-[#0a0a0a]'>
         {/* for laptop */}
         <div className='md:h-[92vh] md:w-[32vw] rounded-full hidden md:flex absolute right-[25vw] top-17'>
-            <img src="/IMG-20250829-WA0002.jpg" alt="image" className='object-cover w-full h-full rounded-full mask-x-from-blue-500 opacity-50 hero-img' />
+            <img src="/ChatGPT Image Feb 21, 2026, 11_27_49 AM.png" alt="image" className='object-cover w-full h-full rounded-full mask-x-from-blue-500 opacity-50 hero-img' />
         </div>
 
         {/* for mobile */}
         <div className='h-[32vh] w-[42vw] rounded-full md:hidden absolute right-15 top-10'>
-            <img src="/IMG-20250829-WA0002.jpg" alt="image" className='object-cover w-full h-full rounded-full mask-x-from-blue-500 opacity-50 hero-img' />
+            <img src="/ChatGPT Image Feb 21, 2026, 11_27_49 AM.png" alt="image" className='object-cover w-full h-full rounded-full mask-x-from-blue-500 opacity-50 hero-img' />
         </div>
 
         <div className='md:ml-30 mt-30 relative'>
