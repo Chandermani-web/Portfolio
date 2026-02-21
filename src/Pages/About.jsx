@@ -217,12 +217,7 @@ const About = () => {
             <Sparkles className="w-5 h-5 text-[#FEFAC2]" />
             <h3 className="text-xl font-semibold">
               <span className="text-[#FEFAC2]">
-                Full-Stack & Web3 Developer
-              </span>{" "}
-              |
-              <span className="text-gray-300">
-                {" "}
-                DevOps & Blockchain Specialist
+                Full-Stack Developer & Devops Enthusiast
               </span>
             </h3>
           </div>
