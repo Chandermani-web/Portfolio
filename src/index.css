@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/bricolage-grotesque/index.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Light "paper" palette: warm cream ground, ink-navy text, deep teal + burnt amber accents */
+:root {
+  --radius: 0.75rem;
+  --background: #faf6ec;
+  --foreground: #1c2430;
+  --card: rgba(255, 253, 248, 0.88);
+  --card-foreground: #1c2430;
+  --popover: #fffdf8;
+  --popover-foreground: #1c2430;
+  --primary: #0b7285;
+  --primary-foreground: #ffffff;
+  --secondary: #efe7d4;
+  --secondary-foreground: #274150;
+  --muted: #efe7d4;
+  --muted-foreground: #5d6670;
+  --accent: #b45309;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
+  --border: rgba(80, 60, 30, 0.16);
+  --input: rgba(80, 60, 30, 0.3);
+  --ring: #0b7285;
+  --ok: #15803d;
+}
+
+@theme inline {
+  --font-display: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, Consolas, monospace;
+  --font-sans: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ok: var(--ok);
+  --color-abyss: #fffdf8;
+  --color-deep: #efe6d0;
+  --color-cyan-hud: #0891b2;
+  --color-sky-hud: #0ea5e9;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; background: var(--background); }
+  body {
+    @apply text-foreground font-sans antialiased;
+    overflow-x: hidden;
+    font-variation-settings: 'wdth' 100;
+  }
+  ::selection { background: rgba(11, 114, 133, 0.22); color: inherit; }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+}
+
+/* Cream paper: a faint ruled grid plus two soft colour washes, fixed behind everything */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 88% -8%, rgba(232, 137, 12, 0.13), transparent 62%),
+    radial-gradient(800px 560px at -6% 38%, rgba(8, 145, 178, 0.09), transparent 62%),
+    linear-gradient(rgba(80, 60, 30, 0.05) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(80, 60, 30, 0.05) 1px, transparent 1px) 0 0 / 44px 44px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.55) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* Rounded cards with a soft paper shadow. (Names kept from the old HUD theme so components need no rewiring.) */
+.hud-clip { border-radius: 1rem; }
+.hud-clip-sm { border-radius: 0.5rem; }
+.hud-panel {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.86), rgba(251, 246, 233, 0.78));
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 14px 34px -18px rgba(70, 48, 12, 0.28),
+    0 2px 6px -2px rgba(70, 48, 12, 0.08);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+}
+.hud-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.06), transparent 42%);
+}
+
+.display-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 100%;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+.glow-text { text-shadow: none; }
+
+.cursor-blink::after {
+  content: '';
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--primary);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* 3D tilt surface, driven by --rx / --ry set from JS on pointer move */
+.tilt {
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+.tilt > .lift { transform: translateZ(40px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .tilt { transition: none; transform: none; }
+  .cursor-blink::after { animation: none; }
+}
+
+/* Thin scrollbar that matches the paper */
+* { scrollbar-width: thin; scrollbar-color: #cdbf9f #faf6ec; }
+
+/* Packet that travels along a data-flow connector */
+.packet { left: 0; animation: packet 1.6s linear infinite; }
+@keyframes packet { 0% { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: calc(100% - 7px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .packet { animation: none; left: 50%; opacity: 1; } }
+
+/* Gaze beam from the portrait's eyes to the focused node */
+.gaze-beam { stroke-dasharray: 3 7; animation: beamflow 0.9s linear infinite; }
+@keyframes beamflow { to { stroke-dashoffset: -20; } }
+@media (prefers-reduced-motion: reduce) { .gaze-beam { animation: none; stroke-dasharray: none; } }
