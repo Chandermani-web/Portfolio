@@ -17,10 +17,10 @@ function Flow({ steps }) {
       <ol className="flex flex-wrap items-center gap-y-3">
         {steps.map((s, i) => (
           <li key={s} className="flex items-center">
-            <span className="rounded-md border border-primary/40 bg-white/70 px-3 py-1.5 font-mono text-xs text-foreground">{s}</span>
+            <span className="rounded-sm border border-primary/40 bg-white/6 px-3 py-1.5 font-mono text-xs text-foreground">{s}</span>
             {i < steps.length - 1 && (
               <span className="relative mx-1 h-px w-8 bg-primary/40 sm:w-10" aria-hidden="true">
-                <span className="packet absolute -top-[3px] size-[7px] rounded-full bg-accent shadow-[0_0_6px_rgba(180,83,9,0.45)]" style={{ animationDelay: `${i * 0.35}s` }} />
+                <span className="packet absolute -top-[3px] size-[7px] rounded-full bg-accent shadow-[0_0_6px_rgba(255,122,69,0.6)]" style={{ animationDelay: `${i * 0.35}s` }} />
               </span>
             )}
           </li>
@@ -35,19 +35,19 @@ function Detail({ p }) {
   return (
     <div className="[perspective:1400px]" onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
       <div ref={ref} className="tilt hud-panel hud-clip grid overflow-hidden md:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative min-h-56 md:min-h-full">
+        <div data-clip="left" className="relative min-h-56 md:min-h-full">
           <img src={p.image} alt="" loading="lazy" className="absolute inset-0 size-full object-cover opacity-80 mix-blend-luminosity" />
           <div className="absolute inset-0 bg-linear-to-t from-abyss from-0% via-abyss/85 via-45% to-abyss/0 to-100%" />
           <div className="lift absolute bottom-5 left-5 right-5">
-            <Badge variant={STATUS[p.status]} className="mb-3 bg-white/90">
+            <Badge variant={STATUS[p.status]} className="mb-3 bg-black/70">
               {p.status === 'Live' && <span className="size-1.5 rounded-full bg-ok" />} {p.status.toLowerCase()}
             </Badge>
-            {p.mern && <Badge variant="ok" className="mb-3 ml-2 bg-white/90">MERN</Badge>}
+            {p.mern && <Badge variant="ok" className="mb-3 ml-2 bg-black/70">MERN</Badge>}
             <h3 className="display-title text-3xl text-foreground sm:text-4xl">{p.title}</h3>
             <p className="mt-2 text-sm text-foreground/75">{p.subtitle}</p>
           </div>
         </div>
-        <div className="p-6 sm:p-8">
+        <div data-stagger="up" data-stagger-each="0.08" className="p-6 sm:p-8">
           <p className="text-base leading-relaxed text-foreground/90">{p.summary}</p>
           <ul className="mt-5 space-y-2.5">
             {p.points.map((pt) => (
@@ -96,7 +96,7 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading title="Things I’ve shipped." note="All three run on the MERN stack: React, Node, Express and MongoDB. Two are live, one won nationally. Pick a project to see how it’s wired." />
         <Tabs value={value} onValueChange={setValue} orientation="vertical" className="gap-6 lg:grid lg:grid-cols-[250px_1fr]">
-          <TabsList className="h-fit w-full flex-row gap-2 overflow-x-auto pb-2 lg:flex-col lg:items-stretch lg:overflow-visible lg:pb-0" aria-label="Projects">
+          <TabsList data-stagger="left" data-stagger-each="0.1" className="h-fit w-full flex-row gap-2 overflow-x-auto pb-2 lg:flex-col lg:items-stretch lg:overflow-visible lg:pb-0" aria-label="Projects">
             {projects.map((p) => (
               <TabsTrigger
                 key={p.id}

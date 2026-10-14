@@ -1,4 +1,5 @@
 import { Atom, Bot, Coffee, Container, LayoutDashboard, Radio } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import SectionHeading from '@/components/SectionHeading'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -38,15 +39,15 @@ export default function Services() {
           note="I take freelance work end to end, MERN first, with Java Spring Boot when the project needs it. One engineer, one conversation, one live deploy."
         />
 
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul data-stagger="rise" data-stagger-each="0.09" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <Service key={s.title} s={s} />
           ))}
         </ul>
 
-        <div className="hud-panel hud-clip mt-8 p-5 sm:p-7">
+        <div data-reveal className="hud-panel hud-clip mt-8 p-5 sm:p-7">
           <h3 className="font-display text-xl font-bold tracking-tight">How a project runs</h3>
-          <ol className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol data-stagger="up" data-stagger-each="0.12" className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((p, i) => (
               <li key={p.title} className="grid grid-cols-[1.75rem_1fr] gap-3">
                 <span className="grid size-7 place-items-center border border-primary/50 bg-abyss/70 font-mono text-xs text-primary">{i + 1}</span>
@@ -57,8 +58,8 @@ export default function Services() {
             ))}
           </ol>
           <div className="mt-6">
-            <Button asChild>
-              <a href="#contact">Start a project</a>
+            <Button asChild data-magnetic="0.3">
+              <Link to="/contact">Start a project</Link>
             </Button>
           </div>
         </div>

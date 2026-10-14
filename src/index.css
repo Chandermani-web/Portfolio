@@ -2,37 +2,41 @@
 @import 'tw-animate-css';
 @import '@fontsource-variable/bricolage-grotesque/index.css';
 @import '@fontsource-variable/jetbrains-mono/index.css';
+@import '@fontsource-variable/onest/index.css';
+@import '@fontsource/instrument-serif/400-italic.css';
 
 @custom-variant dark (&:is(.dark *));
 
-/* Light "paper" palette: warm cream ground, ink-navy text, deep teal + burnt amber accents */
+/* One dark "poster" palette for the whole site: warm black, bone-white ink, a single Kage red, an ember accent */
 :root {
-  --radius: 0.75rem;
-  --background: #faf6ec;
-  --foreground: #1c2430;
-  --card: rgba(255, 253, 248, 0.88);
-  --card-foreground: #1c2430;
-  --popover: #fffdf8;
-  --popover-foreground: #1c2430;
-  --primary: #0b7285;
-  --primary-foreground: #ffffff;
-  --secondary: #efe7d4;
-  --secondary-foreground: #274150;
-  --muted: #efe7d4;
-  --muted-foreground: #5d6670;
-  --accent: #b45309;
-  --accent-foreground: #ffffff;
-  --destructive: #b91c1c;
-  --border: rgba(80, 60, 30, 0.16);
-  --input: rgba(80, 60, 30, 0.3);
-  --ring: #0b7285;
-  --ok: #15803d;
+  --radius: 0.25rem;
+  --background: #070606;
+  --foreground: #f4f1e6;
+  --card: rgba(18, 14, 14, 0.78);
+  --card-foreground: #f4f1e6;
+  --popover: #0e0b0b;
+  --popover-foreground: #f4f1e6;
+  --primary: #ec2f25;
+  --primary-foreground: #f4f1e6;
+  --secondary: #1a1413;
+  --secondary-foreground: #f4f1e6;
+  --muted: #241b1a;
+  --muted-foreground: rgba(244, 241, 230, 0.62);
+  --accent: #ff7a45;
+  --accent-foreground: #0b0a0a;
+  --destructive: #ff5a4f;
+  --border: rgba(244, 241, 230, 0.14);
+  --input: rgba(244, 241, 230, 0.26);
+  --ring: #ec2f25;
+  --ok: #3ddc84;
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
 }
 
 @theme inline {
-  --font-display: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Onest Variable', 'Segoe UI', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, Consolas, monospace;
-  --font-sans: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-sans: 'Onest Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -52,11 +56,11 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ok: var(--ok);
-  --color-abyss: #fffdf8;
-  --color-deep: #efe6d0;
-  --color-cyan-hud: #0891b2;
-  --color-sky-hud: #0ea5e9;
-  --radius-sm: calc(var(--radius) - 2px);
+  --color-abyss: #0d0a0a;
+  --color-deep: #161110;
+  --color-cyan-hud: #ff5a4f;
+  --color-sky-hud: #ff8a5c;
+  --radius-sm: calc(var(--radius) - 1px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
 }
@@ -67,13 +71,13 @@
   body {
     @apply text-foreground font-sans antialiased;
     overflow-x: hidden;
-    font-variation-settings: 'wdth' 100;
+    font-weight: 300;
   }
-  ::selection { background: rgba(11, 114, 133, 0.22); color: inherit; }
+  ::selection { background: rgba(236, 47, 37, 0.5); color: #fff; }
   :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 }
 
-/* Cream paper: a faint ruled grid plus two soft colour washes, fixed behind everything */
+/* Warm-black ground: two red washes and a little film grain, fixed behind everything */
 body::before {
   content: '';
   position: fixed;
@@ -81,25 +85,34 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(900px 520px at 88% -8%, rgba(232, 137, 12, 0.13), transparent 62%),
-    radial-gradient(800px 560px at -6% 38%, rgba(8, 145, 178, 0.09), transparent 62%),
-    linear-gradient(rgba(80, 60, 30, 0.05) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(90deg, rgba(80, 60, 30, 0.05) 1px, transparent 1px) 0 0 / 44px 44px;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.55) 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.55) 100%);
+    radial-gradient(900px 560px at 92% -6%, rgba(224, 35, 28, 0.16), transparent 62%),
+    radial-gradient(800px 600px at -8% 72%, rgba(224, 35, 28, 0.08), transparent 62%);
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--noise);
+  opacity: 0.07;
+  mix-blend-mode: overlay;
 }
 
-/* Rounded cards with a soft paper shadow. (Names kept from the old HUD theme so components need no rewiring.) */
-.hud-clip { border-radius: 1rem; }
-.hud-clip-sm { border-radius: 0.5rem; }
+/* Hairline between sections, like the poster's rule above its footer row */
+main > section + section { border-top: 1px solid var(--border); }
+
+@layer components {
+/* Dark glass cards. (Names kept from the old HUD theme so components need no rewiring.) */
+.hud-clip { border-radius: 0.25rem; }
+.hud-clip-sm { border-radius: 0.125rem; }
 .hud-panel {
   position: relative;
-  background: linear-gradient(180deg, rgba(255, 253, 248, 0.86), rgba(251, 246, 233, 0.78));
+  background: linear-gradient(180deg, rgba(24, 18, 17, 0.82), rgba(12, 9, 9, 0.76));
   border: 1px solid var(--border);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 14px 34px -18px rgba(70, 48, 12, 0.28),
-    0 2px 6px -2px rgba(70, 48, 12, 0.08);
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 24px 50px -28px rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px) saturate(1.1);
   -webkit-backdrop-filter: blur(12px) saturate(1.1);
 }
@@ -109,17 +122,33 @@ body::before {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(8, 145, 178, 0.06), transparent 42%);
+  background: linear-gradient(135deg, rgba(224, 35, 28, 0.08), transparent 42%);
 }
 
+/* Giant, tight, uppercase: the hero's name treatment, used for every heading */
 .display-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-stretch: 100%;
-  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
   line-height: 0.92;
 }
 .glow-text { text-shadow: none; }
+
+/* Small uppercase label used across sections (index + name) */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.eyebrow b { font-weight: 600; color: var(--primary); }
+.eyebrow::before { content: ''; width: 2.5rem; height: 1px; background: var(--primary); }
+}
 
 .cursor-blink::after {
   content: '';
@@ -149,7 +178,7 @@ body::before {
 }
 
 /* Thin scrollbar that matches the paper */
-* { scrollbar-width: thin; scrollbar-color: #cdbf9f #faf6ec; }
+* { scrollbar-width: thin; scrollbar-color: #3a2f2d #070606; }
 
 /* Packet that travels along a data-flow connector */
 .packet { left: 0; animation: packet 1.6s linear infinite; }
@@ -160,3 +189,215 @@ body::before {
 .gaze-beam { stroke-dasharray: 3 7; animation: beamflow 0.9s linear infinite; }
 @keyframes beamflow { to { stroke-dashoffset: -20; } }
 @media (prefers-reduced-motion: reduce) { .gaze-beam { animation: none; stroke-dasharray: none; } }
+
+/* ------------------------------------------------------------------
+   Hero poster: the one dark section. Onest + Instrument Serif italic, a single red sun.
+   Scoped to .hero-poster so the cream paper theme below is untouched.
+   ------------------------------------------------------------------ */
+.hero-poster {
+  --hero-red: #e0231c;
+  --hero-ink: #f4f1e6;
+  --hero-dim: rgba(244, 241, 230, 0.55);
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  background: #070606;
+  color: var(--hero-ink);
+  font-family: 'Onest Variable', 'Segoe UI', system-ui, sans-serif;
+}
+.hero-poster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+  background-image: var(--noise);
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+}
+.hero-vignette {
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(7, 6, 6, 0.78) 0%, rgba(7, 6, 6, 0.25) 48%, transparent 70%),
+    linear-gradient(0deg, rgba(7, 6, 6, 0.85) 0%, transparent 28%),
+    radial-gradient(ellipse 70% 80% at 79% 50%, transparent 40%, rgba(7, 6, 6, 0.7) 100%);
+}
+
+.hero-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero-name {
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  font-size: clamp(2.4rem, 12.4vw, 4.6rem);
+  color: var(--hero-ink);
+}
+.hero-name-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--hero-red);
+}
+@media (min-width: 1024px) {
+  .hero-name { font-size: clamp(5rem, min(8.6vw, 15vh), 9.5rem); }
+  .hero-name-outline { -webkit-text-stroke-width: 2px; }
+}
+.hero-meta-label {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--hero-dim);
+}
+@media (min-width: 640px) { .hero-meta-label { letter-spacing: 0.42em; } }
+.hero-tagline {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
+  line-height: 1.05;
+  text-wrap: balance;
+  letter-spacing: -0.012em;
+}
+.hero-body {
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.6;
+  text-wrap: pretty;
+  color: rgba(244, 241, 230, 0.78);
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 3rem;
+  padding: 0 1.5rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.hero-btn-solid { background: var(--hero-ink); color: #0b0a0a; }
+.hero-btn-solid:hover { background: var(--hero-red); color: var(--hero-ink); }
+.hero-btn-ghost { border: 1px solid rgba(244, 241, 230, 0.28); color: var(--hero-ink); }
+.hero-btn-ghost:hover { border-color: var(--hero-ink); background: rgba(255, 255, 255, 0.06); }
+.hero-poster :focus-visible { outline-color: var(--hero-red); }
+
+.hero-meta {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hero-dim);
+}
+.hero-stat {
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--hero-ink);
+}
+
+/* the sun, and the portrait set in front of it */
+.hero-orb { width: min(78vw, 360px); aspect-ratio: 1; }
+@media (min-width: 1024px) { .hero-orb { width: min(41vw, 62vh); } }
+.hero-orb-sun {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 88%;
+  height: 88%;
+  border-radius: 50%;
+  background:
+    var(--noise),
+    radial-gradient(circle at 34% 28%, #ff5144 0%, var(--hero-red) 52%, #a9120d 100%);
+  background-blend-mode: overlay, normal;
+  box-shadow: 0 0 140px 20px rgba(224, 35, 28, 0.35);
+}
+.hero-orb-ring {
+  position: absolute;
+  left: -4%;
+  top: -4%;
+  width: 96%;
+  height: 96%;
+  border-radius: 50%;
+  border: 1px solid rgba(224, 35, 28, 0.55);
+}
+.hero-orb-photo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 84%;
+  height: 84%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(244, 241, 230, 0.2);
+  box-shadow: 0 0 0 6px #070606, 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.hero-vertical {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 1.4vw;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--hero-dim);
+}
+@media (min-width: 1280px) { .hero-vertical { display: block; } }
+
+.hero-rise { animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s) both; }
+@keyframes hero-rise { from { opacity: 0; translate: 0 18px; } }
+@media (prefers-reduced-motion: reduce) { .hero-rise { animation: none; } }
+
+/* Inner-page header: same poster, shorter */
+.page-header { min-height: 58svh; }
+.page-title { font-size: clamp(2.6rem, 11vw, 5rem); }
+@media (min-width: 1024px) { .page-title { font-size: clamp(4.5rem, min(8.2vw, 17vh), 9rem); } }
+.page-numeral {
+  position: absolute;
+  right: 3vw;
+  bottom: -0.12em;
+  z-index: -5;
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  font-size: clamp(9rem, 30vw, 28rem);
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(236, 47, 37, 0.42);
+  pointer-events: none;
+  user-select: none;
+}
+.page-enter { animation: page-in 0.5s ease both; }
+@keyframes page-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .page-enter { animation: none; } }
+
+
+/* ------------------------------------------------------------------
+   Motion layer (GSAP + Lenis)
+   ------------------------------------------------------------------ */
+/* Lenis owns smooth scrolling; native smooth would fight it */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+
+/* GSAP drives transforms on these, so CSS must not also tween them */
+[data-magnetic] { transition-property: background-color, color, border-color, box-shadow, opacity !important; will-change: transform; }
+
+/* Hero entrance is GSAP-driven now; the old CSS keyframes stay only as a no-JS fallback for any element that still uses them */
+.hero-orb-photo, .hero-orb-sun, .hero-orb-ring { will-change: transform; }
+
+/* Split-text masks must not clip italic serif descenders or tight uppercase caps while they rise */
+[data-split], [data-h="tagline"], [data-h="title"], [data-h="name"] { overflow-wrap: normal; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-magnetic] { will-change: auto; }
+}

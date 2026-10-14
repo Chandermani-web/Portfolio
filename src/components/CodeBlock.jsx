@@ -22,11 +22,11 @@ function tokenize(line, row) {
     let cls = null
     if (comment) cls = 'text-muted-foreground italic'
     else if (str) cls = 'text-accent'
-    else if (ann) cls = 'text-[#7c3aed]'
+    else if (ann) cls = 'text-[#c9adf8]'
     else if (num) cls = 'text-ok'
     else if (ident) {
       if (KEYWORDS.has(ident)) cls = 'text-primary'
-      else if (/^[A-Z]/.test(ident)) cls = 'text-[#0369a1]'
+      else if (/^[A-Z]/.test(ident)) cls = 'text-[#9fd0ff]'
       else if (line[m.index + text.length] === '(') cls = 'text-foreground'
     }
     out.push(cls ? <span key={key} className={cls}>{text}</span> : text)
@@ -42,7 +42,7 @@ export default function CodeBlock({ code, label, className }) {
     <pre
       tabIndex={0}
       aria-label={label}
-      className={cn('overflow-x-auto bg-[#f5eedb]/70 p-5 font-mono text-[13px] leading-relaxed text-foreground/85 sm:text-sm', className)}
+      className={cn('overflow-x-auto bg-black/45 p-5 font-mono text-[13px] leading-relaxed text-foreground/85 sm:text-sm', className)}
     >
       <code>
         {code.split('\n').map((line, i) => (

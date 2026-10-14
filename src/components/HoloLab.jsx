@@ -20,7 +20,7 @@ const clamp = (v, a = -1, b = 1) => Math.max(a, Math.min(b, v))
  *  spatial  true when nodes sit around the photo (measured aim + beam); false on small screens, where
  *           `virtualLook(id)` supplies a {x,y} direction instead
  */
-export default function HoloLab({ image, activeId, linkIds = [], linkColor = '#e8890c', edges = [], spatial, virtualLook, className, label, children }) {
+export default function HoloLab({ image, activeId, linkIds = [], linkColor = '#ffb347', edges = [], spatial, virtualLook, className, label, children }) {
   const uid = useId().replace(/:/g, '')
   const wrap = useRef(null)
   const stageApi = useRef(null)
@@ -105,7 +105,7 @@ export default function HoloLab({ image, activeId, linkIds = [], linkColor = '#e
   }
 
   return (
-    <div ref={wrap} role="group" aria-label={label} className={cn('relative isolate overflow-hidden border border-border shadow-[0_20px_44px_-22px_rgba(70,48,12,0.45)]', className)}>
+    <div ref={wrap} role="group" aria-label={label} className={cn('relative isolate overflow-hidden border border-border shadow-[0_20px_44px_-22px_rgba(0,0,0,0.7)]', className)}>
       {fallback && (
         <img
           src={image.url}
@@ -122,8 +122,8 @@ export default function HoloLab({ image, activeId, linkIds = [], linkColor = '#e
           {geo.beam && (
             <defs>
               <linearGradient id={`beam-${uid}`} gradientUnits="userSpaceOnUse" x1={geo.beam.from.x} y1={geo.beam.from.y} x2={geo.beam.to.x} y2={geo.beam.to.y}>
-                <stop offset="0" stopColor="#e6fbff" stopOpacity="0.95" />
-                <stop offset="1" stopColor="#22d3ee" stopOpacity="0.9" />
+                <stop offset="0" stopColor="#ffe9e4" stopOpacity="0.95" />
+                <stop offset="1" stopColor="#ff5a4f" stopOpacity="0.9" />
               </linearGradient>
             </defs>
           )}
@@ -146,7 +146,7 @@ export default function HoloLab({ image, activeId, linkIds = [], linkColor = '#e
           {geo.beam && (
             <>
               <path d={curve(geo.beam.from, geo.beam.to, 0.05)} fill="none" stroke={`url(#beam-${uid})`} strokeWidth="1.5" className="gaze-beam" style={{ filter: 'drop-shadow(0 0 5px #22d3ee)' }} />
-              <circle cx={geo.beam.from.x} cy={geo.beam.from.y} r="3" fill="#e6fbff" opacity="0.9" />
+              <circle cx={geo.beam.from.x} cy={geo.beam.from.y} r="3" fill="#ffe9e4" opacity="0.9" />
             </>
           )}
         </svg>

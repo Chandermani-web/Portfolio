@@ -70,19 +70,19 @@ export default function Architecture() {
         />
       </div>
 
-      <div className="mx-auto mb-20 max-w-[1400px] md:mb-28">
+      <div data-reveal="fade" className="mx-auto mb-20 max-w-[1400px] md:mb-28">
         <ArchitectureLab />
       </div>
 
       <div className="mx-auto max-w-6xl">
-        <h3 className="display-title mb-8 text-[clamp(1.6rem,3vw,2.4rem)] text-foreground">Reference design on AWS</h3>
-        <p className="mb-8 max-w-2xl font-mono text-sm leading-relaxed text-muted-foreground">
+        <h3 data-split="lines" className="display-title mb-8 text-[clamp(1.6rem,3vw,2.4rem)] text-foreground">Reference design on AWS</h3>
+        <p data-reveal className="mb-8 max-w-2xl font-mono text-sm leading-relaxed text-muted-foreground">
           A system-design diagram I have worked through, not a claim of production use. Hover a node to trace its links; click to pin it.
         </p>
       </div>
 
       <div className="mx-auto max-w-[1400px]">
-        <div className="hud-clip relative overflow-hidden border border-border bg-abyss/20">
+        <div data-reveal="fade" data-cursor="Drag" className="hud-clip relative overflow-hidden border border-border bg-abyss/20">
           <Stage
             create={create}
             onReady={(s) => (api.current = s)}
@@ -132,7 +132,7 @@ export default function Architecture() {
         </div>
       </div>
 
-      <div className="mx-auto mt-8 grid max-w-6xl gap-5 lg:grid-cols-[1.35fr_1fr]">
+      <div data-stagger="rise" data-stagger-each="0.15" className="mx-auto mt-8 grid max-w-6xl gap-5 lg:grid-cols-[1.35fr_1fr]">
         <Steps title="Life of one request" steps={archFlow.request} />
         <Steps title="Life of one release" steps={archFlow.release} />
       </div>

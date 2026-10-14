@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import { fontsReady, makeNodeLabel, makeDotTexture, makePill } from '../labels'
 
-const TONE = { cyan: 0x0891b2, sky: 0x0ea5e9, amber: 0xe8890c, violet: 0x8b5cf6, green: 0x1fa35c }
-const TONE_HEX = { cyan: '#0891b2', sky: '#0ea5e9', amber: '#e8890c', violet: '#8b5cf6', green: '#1fa35c' }
+const TONE = { cyan: 0xff5a4f, sky: 0x7fc3ff, amber: 0xffb347, violet: 0xb794f6, green: 0x3ddc84 }
+const TONE_HEX = { cyan: '#ff5a4f', sky: '#7fc3ff', amber: '#ffb347', violet: '#b794f6', green: '#3ddc84' }
 const GAP = 1.35 // vertical distance between layers
 const W = 5 // slab width
 const D = 3 // slab depth
@@ -34,7 +34,7 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
   const layerY = (i) => topY - i * GAP
 
   // Floor
-  const grid = new THREE.GridHelper(22, 22, 0xc9b995, 0xdccfb3)
+  const grid = new THREE.GridHelper(22, 22, 0x4a3836, 0x2a1f1e)
   grid.position.set(0.5, bottomY - 1.1, 0)
   grid.material.transparent = true
   grid.material.opacity = 0.45
@@ -93,7 +93,7 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
   // Spine the request travels along
   const spine = new THREE.Line(
     new THREE.BufferGeometry().setFromPoints([v3(0, topY + 1.1, 0), v3(0, bottomY - 0.6, 0)]),
-    new THREE.LineDashedMaterial({ color: 0x0891b2, dashSize: 0.14, gapSize: 0.1, transparent: true, opacity: 0.55 }),
+    new THREE.LineDashedMaterial({ color: 0xff5a4f, dashSize: 0.14, gapSize: 0.1, transparent: true, opacity: 0.55 }),
   )
   spine.computeLineDistances()
   world.add(spine)
@@ -101,14 +101,14 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
   // Request / response packet with a short trail
   const TRAIL = 7
   const packet = new THREE.Group()
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.17, 16, 16), new THREE.MeshBasicMaterial({ color: 0x1c2430 }))
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.17, 16, 16), new THREE.MeshBasicMaterial({ color: 0xf4f1e6 }))
   packet.add(head)
-  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: dot, color: 0x0891b2, transparent: true, opacity: 0.3, blending: THREE.NormalBlending, depthWrite: false }))
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: dot, color: 0xff5a4f, transparent: true, opacity: 0.3, blending: THREE.NormalBlending, depthWrite: false }))
   halo.scale.set(1.5, 1.5, 1)
   packet.add(halo)
   world.add(packet)
   const trail = Array.from({ length: TRAIL }, (_, i) => {
-    const m = new THREE.Mesh(new THREE.SphereGeometry(0.1 * (1 - i / TRAIL), 8, 8), new THREE.MeshBasicMaterial({ color: 0x0891b2, transparent: true, opacity: 0.6 * (1 - i / TRAIL) }))
+    const m = new THREE.Mesh(new THREE.SphereGeometry(0.1 * (1 - i / TRAIL), 8, 8), new THREE.MeshBasicMaterial({ color: 0xff5a4f, transparent: true, opacity: 0.6 * (1 - i / TRAIL) }))
     world.add(m)
     return m
   })
@@ -149,7 +149,7 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
   box.visible = prop === 'container'
   world.add(box)
   if (prop === 'container') {
-    const G = 0x1fa35c
+    const G = 0x3ddc84
     const body = new THREE.BoxGeometry(3, 1.5, 1.5)
     const bm = new THREE.Mesh(body, new THREE.MeshBasicMaterial({ color: G, transparent: true, opacity: 0.12, depthWrite: false }))
     bm.position.y = 0.75
@@ -166,7 +166,7 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
     box.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(ribs), new THREE.LineBasicMaterial({ color: G, transparent: true, opacity: 0.35 })))
     // a smaller container stacked on top, shifted, to read as "containers"
     const top = new THREE.BoxGeometry(1.7, 0.9, 1.3)
-    const te = new THREE.LineSegments(new THREE.EdgesGeometry(top), new THREE.LineBasicMaterial({ color: 0x0ea5e9 }))
+    const te = new THREE.LineSegments(new THREE.EdgesGeometry(top), new THREE.LineBasicMaterial({ color: 0x7fc3ff }))
     te.position.set(-0.4, 1.5 + 0.45, 0)
     box.add(te)
     const door = new THREE.LineSegments(
@@ -178,7 +178,7 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
       new THREE.BufferGeometry().setFromPoints(Array.from({ length: 64 }, (_, i) => v3(Math.cos((i / 64) * Math.PI * 2) * 2.2, -0.02, Math.sin((i / 64) * Math.PI * 2) * 2.2))),
       new THREE.LineBasicMaterial({ color: G, transparent: true, opacity: 0.5 }),
     ))
-    const pill = makePill('Docker container', { color: '#1fa35c', height: 0.42 })
+    const pill = makePill('Docker container', { color: '#3ddc84', height: 0.42 })
     pill.position.set(0, 3.2, 0)
     box.add(pill)
   }
@@ -194,15 +194,15 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
     }
     const g = new THREE.BufferGeometry()
     g.setAttribute('position', new THREE.BufferAttribute(pp, 3))
-    world.add(new THREE.Points(g, new THREE.PointsMaterial({ size: 0.07, map: dot, color: 0x5aa9bd, transparent: true, opacity: 0.4, depthWrite: false, blending: THREE.NormalBlending })))
+    world.add(new THREE.Points(g, new THREE.PointsMaterial({ size: 0.07, map: dot, color: 0xff8a7f, transparent: true, opacity: 0.4, depthWrite: false, blending: THREE.NormalBlending })))
   }
 
   const ray = new THREE.Raycaster()
   const state = { yaw: -0.38, hovered: null, idle: 0 }
   let selected = null
   const CYCLE = 6.4 // seconds for request down + response up
-  const cyan = new THREE.Color(0x0891b2)
-  const amber = new THREE.Color(0xe8890c)
+  const cyan = new THREE.Color(0xff5a4f)
+  const amber = new THREE.Color(0xffb347)
   const tmpC = new THREE.Color()
 
   return {
@@ -272,7 +272,7 @@ export async function createJavaStack({ el, layers, onHover, onSelect, prop = 'm
       const py = down ? THREE.MathUtils.lerp(startY, endY, p) : THREE.MathUtils.lerp(endY, startY, p)
       tmpC.copy(down ? cyan : amber)
       packet.position.set(0, py, 0)
-      head.material.color.copy(tmpC).lerp(new THREE.Color(0x1c2430), 0.35)
+      head.material.color.copy(tmpC).lerp(new THREE.Color(0xffffff), 0.3)
       halo.material.color.copy(tmpC)
       trail.forEach((m, i) => {
         m.position.set(0, py + (down ? 1 : -1) * (i + 1) * 0.22, 0)

@@ -1,6 +1,6 @@
 # Chandermani Mishra: 3D portfolio
 
-Vite + React 19 + Tailwind CSS v4 + shadcn/ui + lucide-react + three.js.
+Vite + React 19 + Tailwind CSS v4 + shadcn/ui + lucide-react + three.js + **GSAP** (ScrollTrigger, SplitText) + **Lenis**.
 
 ```bash
 npm install
@@ -16,13 +16,34 @@ its scene there, with its own pointer state (hover, drag, click). Scenes live in
 | Scene | File |
 | --- | --- |
 | Page backdrop (stars, grid, scroll flythrough) | `background.js` |
-| Hero reactor around the portrait | `hero.js` |
+| Hero reactor around the portrait (**no longer used**: the hero is now the dark poster below; safe to delete) | `hero.js` |
 | Gaze portrait: photo as a 2.5D plane that looks toward the focused node (Architecture and Stack labs) | `gazePortrait.js` |
 | Java / Spring Boot layer stack with a request travelling through it | `javaStack.js` |
 | 3D AWS architecture diagram (CDN, ALB, proxies, cache, shards, replicas, CI/CD) | `architecture.js` |
 | Contact globe | `globe.js` |
 
 `prefers-reduced-motion` slows animation to near-still. If WebGL is unavailable the content still reads normally.
+
+## Pages and routes
+Each nav link is its own page (React Router, one lazy-loaded chunk per page), all in the dark poster style of the hero:
+
+| Route | Page |
+|---|---|
+| `/` | Hero, index of every page, "now", closing call to action |
+| `/about` `/stack` `/mern-java` `/projects` `/architecture` `/services` `/experience` `/contact` | One page each, opening with a poster header (`PageHeader`) and ending with a link to the next page |
+
+The route list, page titles and one-line descriptions all come from `nav` in `src/data/portfolio.js`; routes are declared in
+`src/App.jsx`. Because these are real URLs, the host must serve `index.html` for unknown paths: `nginx.conf` (Docker),
+`vercel.json` and `public/_redirects` (Netlify) are included. Shared pieces: `layout/Layout.jsx` (nav, footer, scroll reset),
+`components/PageShell.jsx`, `HomeIndex.jsx`, `CtaBand.jsx`, `Footer.jsx`.
+
+## Hero (dark poster)
+`src/sections/Hero.jsx` is the only dark section: giant name, a red sun with the portrait in front of it, Onest +
+Instrument Serif italic. Its background is `src/components/RedField.jsx`, a small WebGL shader (rays that meet behind the
+portrait, travelling pulses, a bolt to the cursor). It measures where the portrait sits so the rays always meet behind it,
+pauses off-screen, draws one still frame under `prefers-reduced-motion`, and leaves plain CSS glow if WebGL is missing.
+All hero styles are scoped under `.hero-poster` in `index.css` (red `#e0231c`); the rest of the site keeps the cream theme.
+`Nav.jsx` switches to a dark glass bar while the hero is on screen.
 
 ## Interactive labs (Architecture + Stack)
 `src/components/HoloLab.jsx` renders a photo on the shared canvas (`gazePortrait.js`) plus an SVG layer for data-flow
@@ -61,3 +82,35 @@ Components in `src/components/ui/` follow the shadcn "new-york" style; `componen
 
 ## Docker
 `docker build -t portfolio . && docker run -p 8080:80 portfolio`
+
+
+## Motion system (GSAP + Lenis)
+Everything animated is driven by GSAP, with Lenis for smooth scrolling, both on one shared ticker (`components/SmoothScroll.jsx`) so
+scroll, ScrollTrigger and the WebGL canvas stay in the same frame. Plugins are registered once in `src/lib/gsap.js`.
+
+| Piece | File | What it does |
+|---|---|---|
+| Preloader | `components/Preloader.jsx` | First visit only: counter, name rising out of masks, a sun that swells and lifts away like a curtain |
+| Page curtain | `components/RouteTransition.jsx` | Internal links are intercepted: two curved slabs cover the page showing the destination name, the route changes, they lift. Back/forward skip it |
+| Choreographer | `components/Choreographer.jsx` | Watches `<main>` and the footer and wires the `data-*` attributes below the moment elements mount, so lazy routes and tabs animate with no per-page code. Tears down per route |
+| Hero / page headers | `sections/Hero.jsx`, `components/PageHeader.jsx` | Split-text name, sun ignition, portrait unmask, pointer depth layers, scroll-scrubbed exit |
+| Nav | `components/Nav.jsx` | Drops in after the curtain, hides on scroll down and returns on scroll up, scrubbed progress bar, mobile menu cascade |
+| Cursor | `components/Cursor.jsx` | Trailing ring that swells on links and shows words (`data-cursor="Drag"`). Fine pointers only |
+| Marquee | `components/TechMarquee.jsx` | Two rows of tools; scrolling speeds them up and reverses them with your scroll direction |
+
+### Animate anything with an attribute
+| Attribute | Effect |
+|---|---|
+| `data-split="lines"` (or `words`, `chars`) | Headline rises out of a mask; the DOM is reverted to plain text once it lands |
+| `data-reveal="up"` (or `left`, `right`, `scale`, `blur`, `fade`) | One element eases in. Use `fade` for anything holding a WebGL stage |
+| `data-stagger="rise"` (or `up`, `left`, `pop`) + `data-stagger-each="0.09"` | Children arrive one after another |
+| `data-clip="left"` (or `up`, `right`) | Image/panel unwrapped by a clip-path while its image settles from a zoom |
+| `data-line`, `data-bar="72"`, `data-count` | A rule draws itself, a bar grows, numbers count up |
+| `data-parallax="0.3"` | Scrubbed vertical drift |
+| `data-magnetic="0.3"` | Element leans toward the pointer |
+| `data-swing` | Hangs from the top and swings still (the lanyard badge) |
+| `data-scrub-fill` | ScaleY follows scroll through its parent (Experience spine) |
+
+Rules the system follows: it never transforms an element that contains a WebGL `Stage` (the canvas scissors to its rect); CSS
+transitions are switched off while GSAP plays so they do not chase each frame; `prefers-reduced-motion` removes the preloader,
+curtain, smooth scroll, cursor and every entrance, leaving the final state; `data-lenis-prevent` keeps dialogs scrollable.

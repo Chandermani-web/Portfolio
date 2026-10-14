@@ -50,7 +50,7 @@ export default function JavaBody() {
 
   return (
     <div>
-        <div className="hud-clip relative overflow-hidden border border-border bg-abyss/20">
+        <div data-reveal="fade" data-cursor="Drag" className="hud-clip relative overflow-hidden border border-border bg-abyss/20">
           <Stage
             create={create}
             onReady={(s) => (api.current = s)}
@@ -83,7 +83,7 @@ export default function JavaBody() {
           </ul>
         </div>
 
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul data-stagger="rise" data-stagger-each="0.08" className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {javaTopics.map((t) => (
             <Topic key={t.title} t={t} />
           ))}

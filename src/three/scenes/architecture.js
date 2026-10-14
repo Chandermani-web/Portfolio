@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import { fontsReady, makeNodeLabel, makePill, makeDotTexture } from '../labels'
 
-const TONE = { cyan: 0x0891b2, sky: 0x0ea5e9, amber: 0xe8890c, violet: 0x8b5cf6, green: 0x1fa35c }
-const TONE_HEX = { cyan: '#0891b2', sky: '#0ea5e9', amber: '#e8890c', violet: '#8b5cf6', green: '#1fa35c' }
+const TONE = { cyan: 0xff5a4f, sky: 0x7fc3ff, amber: 0xffb347, violet: 0xb794f6, green: 0x3ddc84 }
+const TONE_HEX = { cyan: '#ff5a4f', sky: '#7fc3ff', amber: '#ffb347', violet: '#b794f6', green: '#3ddc84' }
 const Y = 0.05 // height of every connector
 const FLOOR = -0.78
 // Radial segments per prism shape. Boxes are handled separately.
@@ -61,13 +61,13 @@ export async function createArchitecture({ el, data, onHover, onSelect }) {
     }
     const g = new THREE.BufferGeometry()
     g.setAttribute('position', new THREE.BufferAttribute(pp, 3))
-    const dust = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.07, map: dot, color: 0x5aa9bd, transparent: true, opacity: 0.3, depthWrite: false, blending: THREE.NormalBlending }))
+    const dust = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.07, map: dot, color: 0xff8a7f, transparent: true, opacity: 0.3, depthWrite: false, blending: THREE.NormalBlending }))
     dust.userData.dust = true
     content.add(dust)
     scene.userData.dust = dust
   }
 
-  const grid = new THREE.GridHelper(30, 30, 0xc9b995, 0xdccfb3)
+  const grid = new THREE.GridHelper(30, 30, 0x4a3836, 0x2a1f1e)
   grid.position.set(0, FLOOR, 0.4)
   grid.material.transparent = true
   grid.material.opacity = 0.4
@@ -111,7 +111,7 @@ export async function createArchitecture({ el, data, onHover, onSelect }) {
     const row = ['SHARED AWS SERVICES', ...data.platform]
     row.forEach((text, i) => {
       const lead = i === 0
-      const p = makePill(text, { color: lead ? '#0ea5e9' : '#3a8fa8', dot: !lead, height: 0.27 })
+      const p = makePill(text, { color: lead ? '#7fc3ff' : '#c9857f', dot: !lead, height: 0.27 })
       p.position.set(cursor + p.scale.x / 2, FLOOR + 0.2, 8.2)
       p.material.opacity = lead ? 0.95 : 0.8
       content.add(p)
@@ -226,7 +226,7 @@ export async function createArchitecture({ el, data, onHover, onSelect }) {
     let n = 0
     const tint = new THREE.Color()
     for (const r of routes) {
-      tint.copy(colors[r.type]).lerp(new THREE.Color(0x1c2430), 0.3)
+      tint.copy(colors[r.type]).lerp(new THREE.Color(0xffffff), 0.25)
       for (let p = 0; p < r.per; p++) packets.setColorAt(n++, tint)
     }
     packets.instanceColor.needsUpdate = true
@@ -237,7 +237,7 @@ export async function createArchitecture({ el, data, onHover, onSelect }) {
   // Selector ring that follows the focused node
   const selector = new THREE.Mesh(
     new THREE.RingGeometry(1.18, 1.26, 64),
-    new THREE.MeshBasicMaterial({ color: 0x1c2430, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, blending: THREE.NormalBlending }),
+    new THREE.MeshBasicMaterial({ color: 0xf4f1e6, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, blending: THREE.NormalBlending }),
   )
   selector.rotation.x = -Math.PI / 2
   selector.position.y = FLOOR + 0.03
@@ -327,7 +327,7 @@ export async function createArchitecture({ el, data, onHover, onSelect }) {
         selector.scale.set(w * s, w * s, 1)
       }
       selector.material.opacity += ((fn ? 0.8 : 0) - selector.material.opacity) * Math.min(1, dt * 10)
-      selector.material.color.setHex(fn ? TONE[fn.def.tone] : 0x1c2430)
+      selector.material.color.setHex(fn ? TONE[fn.def.tone] : 0xf4f1e6)
 
       // Frames shimmer very slightly
       for (const f of frames) f.mat.opacity = 0.42 + Math.sin(t * 0.7 * k) * 0.06

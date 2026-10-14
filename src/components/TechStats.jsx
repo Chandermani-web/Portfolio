@@ -7,7 +7,7 @@ function Pips({ n, color }) {
         <span
           key={i}
           className="h-1.5 w-3.5 rounded-[1px]"
-          style={{ background: i <= n ? color : 'rgba(80,60,30,0.13)' }}
+          style={{ background: i <= n ? color : 'rgba(244,241,230,0.12)' }}
         />
       ))}
     </span>
@@ -36,7 +36,7 @@ export default function TechStats({ name, stats, color, className }) {
           style={{ animationDelay: `${i * 45}ms`, borderColor: `${color}66` }}
         >
           <div className="flex items-center justify-between gap-2">
-            <span className="font-mono text-[10px] tracking-wider uppercase" style={{ color: `color-mix(in srgb, ${color} 62%, #1c2430)` }}>{b.label}</span>
+            <span className="font-mono text-[10px] tracking-wider uppercase" style={{ color: `color-mix(in srgb, ${color} 62%, #f4f1e6)` }}>{b.label}</span>
             {b.pips ? <Pips n={b.pips} color={color} /> : null}
           </div>
           <p className="mt-0.5 text-[12px] leading-snug text-foreground/90">{b.text}</p>

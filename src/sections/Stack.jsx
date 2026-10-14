@@ -70,7 +70,7 @@ function Panel({ group, active, pinned, spatial, onEnter, onLeave, onToggle }) {
                 onClick={() => onToggle(s)}
                 style={{ borderColor: on ? group.color : undefined, background: on ? `${group.color}22` : undefined, boxShadow: on ? `0 6px 14px -6px ${group.color}aa` : undefined }}
                 className={cn(
-                  'cursor-pointer rounded-md border border-border bg-white/70 px-2 py-1 font-mono text-[11px] leading-none text-foreground/85 transition-all duration-150 hover:border-foreground/30 hover:text-foreground',
+                  'cursor-pointer rounded-sm border border-border bg-white/6 px-2 py-1 font-mono text-[11px] leading-none text-foreground/85 transition-all duration-150 hover:border-foreground/30 hover:text-foreground',
                   on && 'scale-105 text-foreground',
                 )}
               >
@@ -110,7 +110,7 @@ export default function Stack() {
         />
       </div>
 
-      <div className="mx-auto max-w-[1180px]" onKeyDown={(e) => e.key === 'Escape' && setSelected(null)}>
+      <div data-reveal="fade" data-cursor="Look" className="mx-auto max-w-[1180px]" onKeyDown={(e) => e.key === 'Escape' && setSelected(null)}>
         <HoloLab
           image={IMAGE}
           label="skills-lab"
@@ -136,7 +136,7 @@ export default function Stack() {
                 </div>
                 {stats && <TechStats key={skill} name={skill} stats={stats} color={group.color} className="pointer-events-none absolute top-[5%] right-[2%] z-10 w-[min(15.5rem,21%)]" />}
                 <ul className="absolute right-[3%] bottom-[3%] left-[2%] z-10 flex flex-wrap items-center gap-2" aria-label="Where tools were used">
-                  <li className="mr-1 rounded-md bg-white/85 px-2 py-1 font-mono text-[10px] tracking-wider text-muted-foreground uppercase">used in</li>
+                  <li className="mr-1 rounded-md bg-white/10 px-2 py-1 font-mono text-[10px] tracking-wider text-muted-foreground uppercase">used in</li>
                   {skillTargets.map((t) => {
                     const on = uses.includes(t.id)
                     return (
@@ -169,7 +169,7 @@ export default function Stack() {
           {skill ? (
             <>
               <div className="flex flex-wrap items-center gap-3">
-                <Badge variant="default" style={{ color: `color-mix(in srgb, ${group.color} 62%, #1c2430)`, borderColor: `${group.color}80` }}>
+                <Badge variant="default" style={{ color: `color-mix(in srgb, ${group.color} 62%, #f4f1e6)`, borderColor: `${group.color}80` }}>
                   {selected === skill && !hover ? <Pin className="mr-1 size-3" /> : null}
                   {group.label}
                 </Badge>
@@ -181,7 +181,7 @@ export default function Stack() {
                 <span>used in</span>
                 {uses.length === 0 && <span className="text-foreground/70">no single project on this page</span>}
                 {uses.map((u) => (
-                  <a key={u} href={targetOf[u].href} className="inline-flex items-center gap-1 rounded-md border border-accent/50 px-2 py-0.5 text-accent hover:bg-accent/10">
+                  <a key={u} href={targetOf[u].href} className="inline-flex items-center gap-1 rounded-sm border border-accent/50 px-2 py-0.5 text-accent hover:bg-accent/10">
                     {targetOf[u].label} <ArrowUpRight className="size-3" />
                   </a>
                 ))}

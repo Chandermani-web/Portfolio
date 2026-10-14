@@ -27,7 +27,7 @@ export async function createGlobe({ el }) {
   scene.add(globe)
 
   // Solid dark core so the far side is hidden behind the near side
-  globe.add(new THREE.Mesh(new THREE.SphereGeometry(R * 0.985, 48, 48), new THREE.MeshBasicMaterial({ color: 0xf4ecd9 })))
+  globe.add(new THREE.Mesh(new THREE.SphereGeometry(R * 0.985, 48, 48), new THREE.MeshBasicMaterial({ color: 0x0e0b0b })))
 
   // Lat / lon lines
   const lines = []
@@ -41,15 +41,15 @@ export async function createGlobe({ el }) {
       lines.push(ll(-90 + (i / 64) * 180, lon), ll(-90 + ((i + 1) / 64) * 180, lon))
     }
   }
-  globe.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(lines), new THREE.LineBasicMaterial({ color: 0x0ea5e9, transparent: true, opacity: 0.24 })))
+  globe.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(lines), new THREE.LineBasicMaterial({ color: 0xff5a4f, transparent: true, opacity: 0.22 })))
 
   // Dotted surface in patches, which reads like landmass without shipping map data
   const pts = []
   const cols = []
   const golden = Math.PI * (3 - Math.sqrt(5))
   const N = 2600
-  const c1 = new THREE.Color('#0891b2')
-  const c2 = new THREE.Color('#0e7fa8')
+  const c1 = new THREE.Color('#ff5a4f')
+  const c2 = new THREE.Color('#b8392f')
   for (let i = 0; i < N; i++) {
     const y = 1 - (i / (N - 1)) * 2
     const r = Math.sqrt(1 - y * y)
@@ -68,7 +68,7 @@ export async function createGlobe({ el }) {
   globe.add(new THREE.Points(dg, new THREE.PointsMaterial({ size: 0.06, vertexColors: true, map: dot, transparent: true, depthWrite: false, blending: THREE.NormalBlending })))
 
   // Atmosphere rim
-  const rim = new THREE.Sprite(new THREE.SpriteMaterial({ map: dot, color: 0x0ea5e9, transparent: true, opacity: 0.5, blending: THREE.NormalBlending, depthWrite: false }))
+  const rim = new THREE.Sprite(new THREE.SpriteMaterial({ map: dot, color: 0xff5a4f, transparent: true, opacity: 0.45, blending: THREE.NormalBlending, depthWrite: false }))
   rim.scale.set(R * 2.45, R * 2.45, 1)
   scene.add(rim)
 
@@ -80,15 +80,15 @@ export async function createGlobe({ el }) {
   marker.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal)
   globe.add(marker)
   const pulses = [0, 1, 2].map(() => {
-    const m = new THREE.Mesh(new THREE.RingGeometry(0.1, 0.13, 48), new THREE.MeshBasicMaterial({ color: 0xe8890c, transparent: true, side: THREE.DoubleSide, depthWrite: false }))
+    const m = new THREE.Mesh(new THREE.RingGeometry(0.1, 0.13, 48), new THREE.MeshBasicMaterial({ color: 0xffb347, transparent: true, side: THREE.DoubleSide, depthWrite: false }))
     marker.add(m)
     return m
   })
-  const core = new THREE.Mesh(new THREE.SphereGeometry(0.075, 16, 16), new THREE.MeshBasicMaterial({ color: 0xf6b34a }))
+  const core = new THREE.Mesh(new THREE.SphereGeometry(0.075, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffd08a }))
   marker.add(core)
-  const pole = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0.8)]), new THREE.LineBasicMaterial({ color: 0xe8890c }))
+  const pole = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0.8)]), new THREE.LineBasicMaterial({ color: 0xffb347 }))
   marker.add(pole)
-  const tag = makePill(HOME.name, { color: '#e8890c', height: 0.38 })
+  const tag = makePill(HOME.name, { color: '#ffb347', height: 0.38 })
   tag.position.set(0, 0, 1.0)
   tag.material.depthTest = false
   tag.renderOrder = 10
@@ -100,12 +100,12 @@ export async function createGlobe({ el }) {
     const dist = home.distanceTo(b)
     const mid = home.clone().add(b).multiplyScalar(0.5).normalize().multiplyScalar(R + dist * 0.38)
     const curve = new THREE.QuadraticBezierCurve3(home, mid, b)
-    const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(64)), new THREE.LineBasicMaterial({ color: 0x0891b2, transparent: true, opacity: 0.5 }))
+    const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(64)), new THREE.LineBasicMaterial({ color: 0xff5a4f, transparent: true, opacity: 0.5 }))
     globe.add(line)
-    const end = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), new THREE.MeshBasicMaterial({ color: 0x0891b2 }))
+    const end = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), new THREE.MeshBasicMaterial({ color: 0xff5a4f }))
     end.position.copy(b)
     globe.add(end)
-    const runner = new THREE.Sprite(new THREE.SpriteMaterial({ map: dot, color: 0xe8890c, transparent: true, blending: THREE.NormalBlending, depthWrite: false }))
+    const runner = new THREE.Sprite(new THREE.SpriteMaterial({ map: dot, color: 0xffb347, transparent: true, blending: THREE.NormalBlending, depthWrite: false }))
     runner.scale.set(0.24, 0.24, 1)
     globe.add(runner)
     return { curve, runner, phase: i * 0.17 }

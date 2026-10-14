@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { createGlobe } from '@/three/scenes/globe'
 import { profile } from '@/data/portfolio'
+import { gsap, useGSAP } from '@/lib/gsap'
+import { prefersReducedMotion } from '@/lib/motion'
 
 // Same EmailJS account as the old site. Override with VITE_EMAILJS_* env vars when you rotate keys.
 const EMAILJS = {
@@ -31,6 +33,19 @@ const create = ({ el }) => createGlobe({ el })
 export default function Contact() {
   const formRef = useRef(null)
   const [status, setStatus] = useState({ state: 'idle', message: '' })
+  const statusRef = useRef(null)
+
+  // feedback that shows what changed: the message slides in, the success tick pops, an error gives the panel a short shake
+  useGSAP(
+    () => {
+      if (prefersReducedMotion() || status.state === 'idle' || status.state === 'sending') return
+      const el = statusRef.current
+      gsap.fromTo(el, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out' })
+      if (status.state === 'sent') gsap.fromTo(el.querySelector('svg'), { scale: 0, rotate: -90 }, { scale: 1, rotate: 0, duration: 0.8, ease: 'back.out(2.4)', delay: 0.1 })
+      if (status.state === 'error') gsap.fromTo(el, { x: -8 }, { x: 0, duration: 0.8, ease: 'elastic.out(1, 0.25)' })
+    },
+    { dependencies: [status.state], scope: formRef },
+  )
 
   const submit = async (e) => {
     e.preventDefault()
@@ -45,20 +60,20 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative px-5 pt-24 pb-16 sm:px-8 md:pt-32">
+    <section id="contact" className="relative px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading title="Let’s build something great." note="Freelance projects, long-term engagements, or a hard problem you’d like a second pair of hands on. Tell me what you’re building; I reply fast." />
 
         <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div className="relative">
-            <Stage create={create} className="h-[min(92vw,520px)] w-full select-none" role="img" aria-label={`Globe centred on ${profile.location}, with signal arcs to London, Berlin, Dubai, Singapore and San Francisco`} />
+          <div data-reveal="fade" className="relative">
+            <Stage create={create} data-cursor="Drag" className="h-[min(92vw,520px)] w-full select-none" role="img" aria-label={`Globe centred on ${profile.location}, with signal arcs to London, Berlin, Dubai, Singapore and San Francisco`} />
             <p className="pointer-events-none absolute inset-x-0 bottom-0 text-center font-mono text-xs text-muted-foreground">
               {profile.location} · remote-friendly worldwide
             </p>
           </div>
 
-          <div className="hud-panel hud-clip p-6 sm:p-8">
-            <form ref={formRef} onSubmit={submit} className="space-y-4" noValidate={false}>
+          <div data-reveal="right" className="hud-panel hud-clip p-6 sm:p-8">
+            <form ref={formRef} onSubmit={submit} data-stagger="up" data-stagger-each="0.08" className="space-y-4" noValidate={false}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="name">Your name</Label>
@@ -78,18 +93,18 @@ export default function Contact() {
                 <Textarea id="message" name="message" required placeholder="Tell me what you’re building." />
               </div>
               <div className="flex flex-wrap items-center gap-4">
-                <Button type="submit" size="lg" disabled={status.state === 'sending'}>
+                <Button type="submit" size="lg" data-magnetic="0.25" disabled={status.state === 'sending'}>
                   {status.state === 'sending' ? <Loader2 className="animate-spin" /> : <Send />}
                   {status.state === 'sending' ? 'Sending' : 'Send message'}
                 </Button>
-                <p role="status" aria-live="polite" className={status.state === 'error' ? 'text-sm text-destructive' : 'flex items-center gap-2 text-sm text-ok'}>
+                <p ref={statusRef} role="status" aria-live="polite" className={status.state === 'error' ? 'text-sm text-destructive' : 'flex items-center gap-2 text-sm text-ok'}>
                   {status.state === 'sent' && <CheckCircle2 className="size-4" />}
                   {status.message}
                 </p>
               </div>
             </form>
 
-            <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
+            <div data-stagger="pop" data-stagger-each="0.06" className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
               {links.map(({ label, href, icon: Icon }) => (
                 <Button key={label} asChild variant="outline" size="sm" shape="soft">
                   <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
@@ -100,12 +115,6 @@ export default function Contact() {
             </div>
           </div>
         </div>
-
-        <footer className="mt-24 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 font-mono text-xs text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} {profile.name}</p>
-          <p>Built with Vite, React, Tailwind, shadcn/ui and three.js</p>
-          <a href="#top" className="text-primary hover:underline">Back to top</a>
-        </footer>
       </div>
     </section>
   )

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 const MONO = '"JetBrains Mono Variable", ui-monospace, Consolas, monospace'
-const SANS = '"Bricolage Grotesque Variable", "Segoe UI", system-ui, sans-serif'
+const SANS = '"Onest Variable", "Segoe UI", system-ui, sans-serif'
 
 /** Resolves once the bundled fonts are ready, so canvas text never falls back. */
 export const fontsReady = (async () => {
@@ -10,6 +10,7 @@ export const fontsReady = (async () => {
       document.fonts.load(`700 26px ${MONO}`),
       document.fonts.load(`500 22px ${MONO}`),
       document.fonts.load(`800 40px ${SANS}`),
+      document.fonts.load(`300 22px ${SANS}`),
     ])
     await document.fonts.ready
   } catch { /* fall back to system fonts */ }
@@ -39,7 +40,7 @@ function toSprite(canvas, worldHeight, extra = {}) {
 }
 
 /** Small tag: coloured dot + mono text inside a chamfer-ish pill. */
-export function makePill(text, { color = '#0891b2', height = 0.5, dot = true } = {}) {
+export function makePill(text, { color = '#ff5a4f', height = 0.5, dot = true } = {}) {
   const S = 2
   const fs = 24
   const m = document.createElement('canvas').getContext('2d')
@@ -54,7 +55,7 @@ export function makePill(text, { color = '#0891b2', height = 0.5, dot = true } =
   const ctx = c.getContext('2d')
   ctx.scale(S, S)
   roundRect(ctx, 2, 2, w - 4, h - 4, 16)
-  ctx.fillStyle = 'rgba(255, 253, 248, 0.96)'
+  ctx.fillStyle = 'rgba(14, 11, 11, 0.94)'
   ctx.fill()
   ctx.lineWidth = 2.5
   ctx.strokeStyle = color
@@ -69,13 +70,13 @@ export function makePill(text, { color = '#0891b2', height = 0.5, dot = true } =
   }
   ctx.font = `700 ${fs}px ${MONO}`
   ctx.textBaseline = 'middle'
-  ctx.fillStyle = '#1c2430'
+  ctx.fillStyle = '#f4f1e6'
   ctx.fillText(text, x, h / 2 + 1)
   return toSprite(c, height)
 }
 
 /** Two-line node label: bold title, dim sub-line. */
-export function makeNodeLabel(title, sub, { color = '#0891b2', height = 0.82 } = {}) {
+export function makeNodeLabel(title, sub, { color = '#ff5a4f', height = 0.82 } = {}) {
   const S = 2
   const m = document.createElement('canvas').getContext('2d')
   m.font = `800 30px ${SANS}`
@@ -91,7 +92,7 @@ export function makeNodeLabel(title, sub, { color = '#0891b2', height = 0.82 } =
   const ctx = c.getContext('2d')
   ctx.scale(S, S)
   roundRect(ctx, 2, 2, w - 4, h - 4, 10)
-  ctx.fillStyle = 'rgba(255, 253, 248, 0.96)'
+  ctx.fillStyle = 'rgba(14, 11, 11, 0.94)'
   ctx.fill()
   ctx.lineWidth = 2.5
   ctx.strokeStyle = color
@@ -100,10 +101,10 @@ export function makeNodeLabel(title, sub, { color = '#0891b2', height = 0.82 } =
   ctx.fillRect(2, 14, 5, h - 28)
   ctx.textBaseline = 'alphabetic'
   ctx.font = `800 30px ${SANS}`
-  ctx.fillStyle = '#1c2430'
+  ctx.fillStyle = '#f4f1e6'
   ctx.fillText(title, padX, 38)
   ctx.font = `500 19px ${MONO}`
-  ctx.fillStyle = '#5d6670'
+  ctx.fillStyle = 'rgba(244, 241, 230, 0.6)'
   ctx.fillText(sub, padX, 66)
   return toSprite(c, height)
 }

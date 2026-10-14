@@ -51,7 +51,7 @@ function Node({ node, active, pinned, spatial, style, onEnter, onLeave, onToggle
         active && 'scale-[1.05] bg-abyss/95',
       )}
     >
-      <span className="block font-mono text-[10px] tracking-wider uppercase" style={{ color: `color-mix(in srgb, ${kind.color} 62%, #1c2430)` }}>{kind.label}</span>
+      <span className="block font-mono text-[10px] tracking-wider uppercase" style={{ color: `color-mix(in srgb, ${kind.color} 62%, #f4f1e6)` }}>{kind.label}</span>
       <span className="block font-display text-sm leading-tight font-bold">{node.name}</span>
       <span className="block truncate font-mono text-[10px] text-muted-foreground">{node.sub}</span>
       {active && <span aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ boxShadow: `inset 0 0 14px ${kind.color}33, 0 8px 18px -8px ${kind.color}aa` }} />}
@@ -75,8 +75,8 @@ function ProjectBox({ project }) {
             <p className="mt-1 text-sm text-foreground/80">{project.subtitle}</p>
           </div>
           <div className="flex gap-2">
-            {project.mern && <Badge variant="ok" className="bg-white/90">MERN</Badge>}
-            <Badge variant={STATUS[project.status]} className="bg-white/90">{project.status.toLowerCase()}</Badge>
+            {project.mern && <Badge variant="ok" className="bg-black/70">MERN</Badge>}
+            <Badge variant={STATUS[project.status]} className="bg-black/70">{project.status.toLowerCase()}</Badge>
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function ArchitectureLab() {
 
   const edges = [
     ...nodes.slice(0, -1).map((n, i) => ({ a: n.id, b: nodes[i + 1].id, color: flowKinds[n.kind].color, flow: true, bow: 0.06, on: active === n.id || active === nodes[i + 1].id })),
-    ...nodes.map((n) => ({ a: 'core', b: n.id, color: '#0891b2', faint: true, on: active === n.id })),
+    ...nodes.map((n) => ({ a: 'core', b: n.id, color: '#ff5a4f', faint: true, on: active === n.id })),
   ]
 
   const choose = (id) => {

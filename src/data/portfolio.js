@@ -19,14 +19,14 @@ export const profile = {
 }
 
 export const nav = [
-  { id: 'about', label: 'About' },
-  { id: 'stack', label: 'Stack' },
-  { id: 'backend', label: 'MERN & Java' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'architecture', label: 'Architecture' },
-  { id: 'services', label: 'Services' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'about', path: '/about', label: 'About', lede: 'A freelance software engineer, how I work, and what I’m focused on right now.' },
+  { id: 'stack', path: '/stack', label: 'Stack', lede: 'The tools I reach for, MERN first, and an honest look at how well I know each one.' },
+  { id: 'backend', path: '/mern-java', label: 'MERN & Java', lede: 'Two full-stack lanes I work in, explored layer by layer: MERN, and Java with Spring Boot.' },
+  { id: 'projects', path: '/projects', label: 'Projects', lede: 'Things I’ve shipped: what each one does, how it’s built and where it runs.' },
+  { id: 'architecture', path: '/architecture', label: 'Architecture', lede: 'How data moves through my projects, and how I think about systems at scale on AWS.' },
+  { id: 'services', path: '/services', label: 'Services', lede: 'What I take on for clients, end to end, from the first screen to the live deploy.' },
+  { id: 'experience', path: '/experience', label: 'Experience', lede: 'Where I’ve worked and studied, and what came out of it.' },
+  { id: 'contact', path: '/contact', label: 'Contact', lede: 'Tell me what you’re building. I reply from my own inbox.' },
 ]
 
 export const heroTags = ['MongoDB', 'Express', 'React', 'Node.js', 'Redis']
@@ -67,12 +67,12 @@ export const about = {
 
 // Tools, grouped like the diagnostics panel beside the 3D sphere
 export const stack = [
-  { id: 'mern', label: 'MERN Stack', color: '#1fa35c', items: ['MongoDB', 'Express', 'React.js', 'Node.js'] },
-  { id: 'frontend', label: 'Frontend', color: '#0891b2', items: ['JavaScript', 'Redux', 'Tailwind', 'Vercel'] },
-  { id: 'backend', label: 'Backend & APIs', color: '#0ea5e9', items: ['REST APIs', 'JWT Auth', 'Micro-svc'] },
-  { id: 'realtime', label: 'Real-time', color: '#1fa35c', items: ['Socket.IO', 'WebRTC', 'WebSocket'] },
+  { id: 'mern', label: 'MERN Stack', color: '#3ddc84', items: ['MongoDB', 'Express', 'React.js', 'Node.js'] },
+  { id: 'frontend', label: 'Frontend', color: '#ff5a4f', items: ['JavaScript', 'Redux', 'Tailwind', 'Vercel'] },
+  { id: 'backend', label: 'Backend & APIs', color: '#7fc3ff', items: ['REST APIs', 'JWT Auth', 'Micro-svc'] },
+  { id: 'realtime', label: 'Real-time', color: '#3ddc84', items: ['Socket.IO', 'WebRTC', 'WebSocket'] },
   { id: 'data', label: 'Data', color: '#6b8fe0', items: ['PostgreSQL', 'Redis', 'SQL', 'ChromaDB'] },
-  { id: 'ai', label: 'AI & LLM', color: '#e8890c', items: ['LangChain', 'LangGraph', 'RAG', 'LLM APIs'] },
+  { id: 'ai', label: 'AI & LLM', color: '#ffb347', items: ['LangChain', 'LangGraph', 'RAG', 'LLM APIs'] },
   { id: 'devops', label: 'DevOps & Cloud', color: '#14b8a6', items: ['Docker', 'AWS', 'CI/CD'] },
   { id: 'java', label: 'Java Full Stack', color: '#f0612f', items: ['Core Java', 'Spring Boot', 'Spring MVC', 'Spring Security', 'JPA / Hibernate', 'Maven', 'JUnit'] },
 ]
@@ -314,11 +314,11 @@ class PostControllerTest {
 // ---------------------------------------------------------------------------
 export const arch = {
   edgeTypes: {
-    req: { label: 'request path', color: '#0891b2' },
-    cache: { label: 'cache lookup', color: '#8b5cf6' },
-    repl: { label: 'replication', color: '#e8890c' },
-    egress: { label: 'outbound via forward proxy', color: '#1fa35c' },
-    deploy: { label: 'CI/CD release', color: '#0ea5e9' },
+    req: { label: 'request path', color: '#ff5a4f' },
+    cache: { label: 'cache lookup', color: '#b794f6' },
+    repl: { label: 'replication', color: '#ffb347' },
+    egress: { label: 'outbound via forward proxy', color: '#3ddc84' },
+    deploy: { label: 'CI/CD release', color: '#7fc3ff' },
   },
   nodes: [
     { id: 'client', title: 'Client', sub: 'React · Browser', kind: 'client', pos: [-8.7, 0, 0], tone: 'cyan', size: [1.8, 1.1, 1.1], note: 'The React app in the browser. It only knows a domain name, never a server address, and talks JSON over HTTPS.' },
@@ -447,12 +447,12 @@ export const timeline = [
 // kind -> colour: client cyan, api sky, cache violet, data green, realtime amber, ai amber
 // ---------------------------------------------------------------------------
 export const flowKinds = {
-  client: { label: 'client', color: '#0891b2' },
-  api: { label: 'API / server', color: '#0ea5e9' },
-  cache: { label: 'cache', color: '#8b5cf6' },
-  data: { label: 'data store', color: '#1fa35c' },
-  realtime: { label: 'real-time', color: '#e8890c' },
-  ai: { label: 'AI / LLM', color: '#e8890c' },
+  client: { label: 'client', color: '#ff5a4f' },
+  api: { label: 'API / server', color: '#7fc3ff' },
+  cache: { label: 'cache', color: '#b794f6' },
+  data: { label: 'data store', color: '#3ddc84' },
+  realtime: { label: 'real-time', color: '#ffb347' },
+  ai: { label: 'AI / LLM', color: '#ffb347' },
   external: { label: 'external API', color: '#6b8fe0' },
 }
 
