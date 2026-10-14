@@ -1,4 +1,4 @@
-import { about, credentials, profile } from '@/data/portfolio'
+import { about, profile } from '@/data/portfolio'
 import { useTilt } from '@/hooks/useTilt'
 import SectionHeading from '@/components/SectionHeading'
 import { Badge } from '@/components/ui/badge'
@@ -65,7 +65,12 @@ export default function About() {
             <p data-reveal="left" className="mt-6 max-w-xl border-l-2 border-primary pl-4 font-serif text-2xl text-foreground italic">{about.quote}</p>
 
             <ul data-stagger="pop" data-stagger-each="0.1" className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {credentials.map((c) => (
+              {[
+                { value: '1 yr', label: 'freelance software engineer', tone: 'cyan' },
+                { value: 'SIH 2025', label: 'National winner', tone: 'amber' },
+                { value: '500+', label: 'teams outranked', tone: 'sky' },
+                { value: '2', label: 'live apps shipped', tone: 'cyan' },
+              ].map((c) => (
                 <li key={c.label} className={cn('hud-panel hud-clip border p-4', TONES[c.tone])}>
                   <p data-count className="font-display text-2xl font-extrabold tracking-tight">{c.value}</p>
                   <p className="mt-1 text-xs text-muted-foreground">{c.label}</p>
